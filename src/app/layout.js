@@ -1,14 +1,17 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Chivo_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+import "./globals.css";
+import LaptopNav from "@/components/nav/LaptopNav";
+
+const chivoMono = Chivo_Mono({
+  variable: "--font-chivo-mono",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const twkLausanne = localFont({
+  src: "../fonts/TWKLausanne-550.woff",
+  variable: "--font-twk-lausanne",
 });
 
 export const metadata = {
@@ -20,8 +23,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${chivoMono.variable} ${twkLausanne.variable} antialiased`}
       >
+        <LaptopNav />
         {children}
       </body>
     </html>
