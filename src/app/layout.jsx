@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 
 import "./globals.css";
 import LaptopNav from "@/components/nav/LaptopNav";
+import Footer from "@/components/Footer";
 
 const chivoMono = Chivo_Mono({
   variable: "--font-chivo-mono",
@@ -23,10 +24,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${chivoMono.variable} ${twkLausanne.variable} antialiased`}
+        className={`${chivoMono.variable} ${twkLausanne.variable} antialiased font-twk w-full overflow-x-hidden`}
       >
         <LaptopNav />
-        {children}
+        <main className="h-screen">{children}</main>
+        <Footer />
       </body>
     </html>
   );

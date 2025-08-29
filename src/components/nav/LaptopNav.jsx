@@ -1,6 +1,9 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/cn";
 
 const ROUTES = [
   {
@@ -22,18 +25,28 @@ const ROUTES = [
 ];
 
 export default function LaptopNav() {
+  const pathname = usePathname();
+  const isActive = (href) => pathname.includes(href);
   return (
-    <nav className="flex items-center justify-between h-[89px] px-[30px]">
-      <Image src="/logo.svg" alt="Function Lab" width={109} height={14} />
+    <nav className="flex items-center justify-between h-[89px] px-[30px] font-chivo">
+      <Link href="/">
+        <Image src="/logo.svg" alt="Function Lab" width={109} height={14} />
+      </Link>
       <ul className="flex items-center gap-2">
         {ROUTES.map((route) => (
-          <li key={route.href} className="px-[15px] py-[5px]">
+          <li
+            key={route.href}
+            className={cn(
+              "px-[15px] py-[5px] rounded-full hover:bg-white/15 transition-all duration-300",
+              isActive(route.href) && "bg-white/15"
+            )}
+          >
             <Link href={route.href}>{route.label}</Link>
           </li>
         ))}
-        <div className="px-[15px] py-[5px] rounded-full border border-white">
+        <li className="px-[15px] py-[5px] rounded-full border border-white hover:bg-white/15 transition-all duration-300">
           <Link href="mailto:hi@functionlab.design">Contact</Link>
-        </div>
+        </li>
       </ul>
     </nav>
   );
