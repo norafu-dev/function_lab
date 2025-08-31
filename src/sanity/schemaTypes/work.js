@@ -44,14 +44,32 @@ const work = {
         {
           name: "video",
           title: "Video",
-          type: "file",
+          type: "object",
+          fields: [
+            {
+              name: "url",
+              title: "Url",
+              type: "url",
+            },
+            {
+              name: "autoplay",
+              title: "Autoplay",
+              type: "boolean",
+            },
+            {
+              name: "background",
+              title: "Background",
+              type: "boolean",
+            },
+            {
+              name: "loop",
+              title: "Loop",
+              type: "boolean",
+            },
+          ],
         },
       ],
-      options: {
-        layout: "grid",
-      },
     },
-    // 首图
     {
       name: "hero",
       title: "Hero",
@@ -65,7 +83,29 @@ const work = {
         {
           name: "video",
           title: "Video",
-          type: "file",
+          type: "object",
+          fields: [
+            {
+              name: "url",
+              title: "Url",
+              type: "url",
+            },
+            {
+              name: "autoplay",
+              title: "Autoplay",
+              type: "boolean",
+            },
+            {
+              name: "background",
+              title: "Background",
+              type: "boolean",
+            },
+            {
+              name: "loop",
+              title: "Loop",
+              type: "boolean",
+            },
+          ],
         },
       ],
     },
@@ -85,7 +125,7 @@ const work = {
       title: "Description",
       type: "text",
     },
-    // 内容图片
+    // 内容行数
     {
       name: "row1",
       title: "Row 1",
@@ -102,7 +142,29 @@ const work = {
             {
               name: "video",
               title: "Video",
-              type: "file",
+              type: "object",
+              fields: [
+                {
+                  name: "url",
+                  title: "Url",
+                  type: "url",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "background",
+                  title: "Background",
+                  type: "boolean",
+                },
+                {
+                  name: "loop",
+                  title: "Loop",
+                  type: "boolean",
+                },
+              ],
             },
           ],
         },
@@ -124,7 +186,29 @@ const work = {
             {
               name: "video",
               title: "Video",
-              type: "file",
+              type: "object",
+              fields: [
+                {
+                  name: "url",
+                  title: "Url",
+                  type: "url",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "background",
+                  title: "Background",
+                  type: "boolean",
+                },
+                {
+                  name: "loop",
+                  title: "Loop",
+                  type: "boolean",
+                },
+              ],
             },
           ],
         },
@@ -146,7 +230,29 @@ const work = {
             {
               name: "video",
               title: "Video",
-              type: "file",
+              type: "object",
+              fields: [
+                {
+                  name: "url",
+                  title: "Url",
+                  type: "url",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "background",
+                  title: "Background",
+                  type: "boolean",
+                },
+                {
+                  name: "loop",
+                  title: "Loop",
+                  type: "boolean",
+                },
+              ],
             },
           ],
         },
@@ -168,7 +274,29 @@ const work = {
             {
               name: "video",
               title: "Video",
-              type: "file",
+              type: "object",
+              fields: [
+                {
+                  name: "url",
+                  title: "Url",
+                  type: "url",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "background",
+                  title: "Background",
+                  type: "boolean",
+                },
+                {
+                  name: "loop",
+                  title: "Loop",
+                  type: "boolean",
+                },
+              ],
             },
           ],
         },
@@ -190,7 +318,29 @@ const work = {
             {
               name: "video",
               title: "Video",
-              type: "file",
+              type: "object",
+              fields: [
+                {
+                  name: "url",
+                  title: "Url",
+                  type: "url",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "background",
+                  title: "Background",
+                  type: "boolean",
+                },
+                {
+                  name: "loop",
+                  title: "Loop",
+                  type: "boolean",
+                },
+              ],
             },
           ],
         },
@@ -212,7 +362,29 @@ const work = {
             {
               name: "video",
               title: "Video",
-              type: "file",
+              type: "object",
+              fields: [
+                {
+                  name: "url",
+                  title: "Url",
+                  type: "url",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "background",
+                  title: "Background",
+                  type: "boolean",
+                },
+                {
+                  name: "loop",
+                  title: "Loop",
+                  type: "boolean",
+                },
+              ],
             },
           ],
         },
@@ -234,7 +406,29 @@ const work = {
             {
               name: "video",
               title: "Video",
-              type: "file",
+              type: "object",
+              fields: [
+                {
+                  name: "url",
+                  title: "Url",
+                  type: "url",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "background",
+                  title: "Background",
+                  type: "boolean",
+                },
+                {
+                  name: "loop",
+                  title: "Loop",
+                  type: "boolean",
+                },
+              ],
             },
           ],
         },
@@ -256,7 +450,29 @@ const work = {
             {
               name: "video",
               title: "Video",
-              type: "file",
+              type: "object",
+              fields: [
+                {
+                  name: "url",
+                  title: "Url",
+                  type: "url",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "background",
+                  title: "Background",
+                  type: "boolean",
+                },
+                {
+                  name: "loop",
+                  title: "Loop",
+                  type: "boolean",
+                },
+              ],
             },
           ],
         },
@@ -278,7 +494,29 @@ const work = {
             {
               name: "video",
               title: "Video",
-              type: "file",
+              type: "object",
+              fields: [
+                {
+                  name: "url",
+                  title: "Url",
+                  type: "url",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "background",
+                  title: "Background",
+                  type: "boolean",
+                },
+                {
+                  name: "loop",
+                  title: "Loop",
+                  type: "boolean",
+                },
+              ],
             },
           ],
         },
@@ -300,7 +538,29 @@ const work = {
             {
               name: "video",
               title: "Video",
-              type: "file",
+              type: "object",
+              fields: [
+                {
+                  name: "url",
+                  title: "Url",
+                  type: "url",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "background",
+                  title: "Background",
+                  type: "boolean",
+                },
+                {
+                  name: "loop",
+                  title: "Loop",
+                  type: "boolean",
+                },
+              ],
             },
           ],
         },
@@ -322,7 +582,29 @@ const work = {
             {
               name: "video",
               title: "Video",
-              type: "file",
+              type: "object",
+              fields: [
+                {
+                  name: "url",
+                  title: "Url",
+                  type: "url",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "background",
+                  title: "Background",
+                  type: "boolean",
+                },
+                {
+                  name: "loop",
+                  title: "Loop",
+                  type: "boolean",
+                },
+              ],
             },
           ],
         },
@@ -344,7 +626,29 @@ const work = {
             {
               name: "video",
               title: "Video",
-              type: "file",
+              type: "object",
+              fields: [
+                {
+                  name: "url",
+                  title: "Url",
+                  type: "url",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "background",
+                  title: "Background",
+                  type: "boolean",
+                },
+                {
+                  name: "loop",
+                  title: "Loop",
+                  type: "boolean",
+                },
+              ],
             },
           ],
         },
@@ -366,7 +670,29 @@ const work = {
             {
               name: "video",
               title: "Video",
-              type: "file",
+              type: "object",
+              fields: [
+                {
+                  name: "url",
+                  title: "Url",
+                  type: "url",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "background",
+                  title: "Background",
+                  type: "boolean",
+                },
+                {
+                  name: "loop",
+                  title: "Loop",
+                  type: "boolean",
+                },
+              ],
             },
           ],
         },
@@ -388,7 +714,29 @@ const work = {
             {
               name: "video",
               title: "Video",
-              type: "file",
+              type: "object",
+              fields: [
+                {
+                  name: "url",
+                  title: "Url",
+                  type: "url",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "background",
+                  title: "Background",
+                  type: "boolean",
+                },
+                {
+                  name: "loop",
+                  title: "Loop",
+                  type: "boolean",
+                },
+              ],
             },
           ],
         },
@@ -410,7 +758,73 @@ const work = {
             {
               name: "video",
               title: "Video",
-              type: "file",
+              type: "object",
+              fields: [
+                {
+                  name: "url",
+                  title: "Url",
+                  type: "url",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "background",
+                  title: "Background",
+                  type: "boolean",
+                },
+                {
+                  name: "loop",
+                  title: "Loop",
+                  type: "boolean",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row16",
+      title: "Row 16",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "url",
+                  title: "Url",
+                  type: "url",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "background",
+                  title: "Background",
+                  type: "boolean",
+                },
+                {
+                  name: "loop",
+                  title: "Loop",
+                  type: "boolean",
+                },
+              ],
             },
           ],
         },
