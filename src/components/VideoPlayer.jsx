@@ -2,12 +2,13 @@
 
 import React from "react";
 
-export default function VideoPlayer({ src, className }) {
+export default function VideoPlayer({ video, className }) {
+  const { url, autoplay, background, loop } = video;
+
+  const src = `${url}?autoplay=${autoplay}&background=${background}&loop=${loop}`;
+
   return (
-    <div
-      className={className}
-      style={{ position: "relative", paddingTop: "50%" }}
-    >
+    <div className={className}>
       <iframe
         src={src}
         style={{

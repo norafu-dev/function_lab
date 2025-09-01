@@ -28,7 +28,7 @@ export default function LaptopNav() {
   const pathname = usePathname();
   const isActive = (href) => pathname.includes(href);
   return (
-    <nav className="flex items-center justify-between h-[89px] px-[30px] font-chivo">
+    <nav className="fixed top-0 left-0 w-full flex items-center justify-between h-[89px] px-[30px] font-chivo z-10">
       <Link href="/">
         <Image src="/logo.svg" alt="Function Lab" width={109} height={14} />
       </Link>

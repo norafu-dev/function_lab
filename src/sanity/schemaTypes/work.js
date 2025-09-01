@@ -9,6 +9,14 @@ const work = {
       type: "string",
     },
     {
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "title",
+      },
+    },
+    {
       name: "homepage",
       title: "Is At Homepage",
       type: "boolean",

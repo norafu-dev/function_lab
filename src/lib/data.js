@@ -12,3 +12,5 @@ Function Lab actively explores the hidden magic of design and creativity through
 Check out exciting news including *exhibitions, award wins, judging, press, teaching* and *new initiatives* that we’ve been up to.
 `,
 };
+
+export default INFOS;
