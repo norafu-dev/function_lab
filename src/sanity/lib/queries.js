@@ -37,4 +37,13 @@ const NEWS_QUERY = defineQuery(`
   }
   `);
 
-export { HOMEPAGE_QUERY, ABOUT_QUERY, NEWS_QUERY };
+const LAB_QUERY = defineQuery(`
+  *[_type == "lab"] | order(date desc){
+    title,
+    size,
+    "cover": cover.asset._ref,
+    "video": video.asset._ref,
+  }
+  `);
+
+export { HOMEPAGE_QUERY, ABOUT_QUERY, NEWS_QUERY, LAB_QUERY };
