@@ -25,3 +25,10 @@ export function formatDate(dateString) {
 
   return `${year}_${paddedMonth}`;
 }
+
+export function getVideoUrl(url) {
+  const extension = url.substring(url.lastIndexOf("-") + 1);
+  const fileNameRegex = new RegExp("file-(.*?)-" + extension);
+  const fileName = url.match(fileNameRegex);
+  return `https://cdn.sanity.io/files/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/production/${fileName[1]}.${extension}`;
+}
