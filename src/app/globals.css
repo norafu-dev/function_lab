@@ -9,3 +9,23 @@ body {
   background-color: #000;
   color: #fff;
 }
+
+@layer utilities {
+  .text-lg {
+    @apply text-[56px] lg:text-[150px] leading-[60px] lg:leading-[150px];
+  }
+  .text-md {
+    @apply text-[24px] lg:text-[56px] leading-[26px] lg:leading-[60px];
+  }
+  .text-base {
+    @apply text-[12px] md:text-[15px] lg:text-[22px] leading-[15px] md:leading-[18px] lg:leading-[28px];
+  }
+
+  .padding-x {
+    @apply px-[15px] md:px-[30px];
+  }
+
+  .grid-layout {
+    @apply grid grid-cols-6 md:grid-cols-12 gap-x-[8px];
+  }
+}

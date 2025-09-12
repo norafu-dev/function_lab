@@ -7,7 +7,7 @@ const WorkList = ({ works }) => {
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get("category");
   return (
-    <div className="md:grid grid-cols-2 gap-[6px]">
+    <div className="lg:grid lg:grid-cols-2 gap-[6px] mb-[200px]">
       {!categoryParam
         ? works.map((work) => <WorkCard key={work.title} work={work} />)
         : works

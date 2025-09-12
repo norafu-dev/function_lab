@@ -105,9 +105,10 @@ const work = {
     },
 
     {
-      name: "tag",
-      title: "Tag",
-      type: "string",
+      name: "tags",
+      title: "Tags",
+      type: "array",
+      of: [{ type: "string" }],
     },
     {
       name: "year",
@@ -120,30 +121,9 @@ const work = {
       type: "text",
     },
     {
-      name: "client",
-      title: "Client",
-      type: "string",
-    },
-    {
-      name: "design_director",
-      title: "Design Director",
-      type: "string",
-    },
-    {
-      name: "concept_development",
-      title: "Concept development",
-      type: "string",
-    },
-
-    {
-      name: "production",
-      title: "Production",
-      type: "string",
-    },
-    {
-      name: "director_photographer",
-      title: "Director/Photographer",
-      type: "string",
+      name: "credits",
+      title: "Credits",
+      type: "text",
     },
     // 内容行数
     {

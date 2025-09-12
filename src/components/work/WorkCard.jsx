@@ -5,7 +5,7 @@ import VideoCard from "./VideoCard";
 const WorkCard = ({ work }) => {
   const { hero, slug, title } = work;
   return (
-    <div className="relative group aspect-[1920/1080] overflow-hidden">
+    <div className="relative group aspect-[1440/810] overflow-hidden">
       <Link href={`/work/${slug}`}>
         {hero.type === "image" ? (
           <ImageCard src={hero} alt={title} />
