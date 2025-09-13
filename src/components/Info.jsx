@@ -24,7 +24,7 @@ const Info = ({ info }) => {
   };
 
   return (
-    <h1 className="w-full px-[15px] md:px-[30px] mt-[400px] mb-[200px] text-md">
+    <h1 className="w-full px-[15px] md:px-[30px] mt-[250px] lg:mt-[392px] text-md">
       {renderStarEmphasis(info)}
     </h1>
   );

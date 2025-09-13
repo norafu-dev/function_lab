@@ -3,6 +3,7 @@ import { client } from "@/sanity/lib/client";
 import { ABOUT_QUERY } from "@/sanity/lib/queries";
 import { ABOUT } from "@/lib/data";
 import Info from "@/components/Info";
+import Redirect from "@/components/Redirect";
 
 const AboutPage = async () => {
   const about = await client.fetch(ABOUT_QUERY);
@@ -13,26 +14,18 @@ const AboutPage = async () => {
   return (
     <div>
       {ABOUT.info && <Info info={ABOUT.info} />}
-      <div className="px-[15px] md:px-[30px] pt-[120px] md:pt-[160px]">
+      <div className="padding-x">
         {/* Hero */}
-        {about?.title && (
-          <p className="max-w-[1200px] text-[28px] md:text-[48px] lg:text-[64px] leading-tight">
-            {about.title}
-          </p>
-        )}
+        {about?.title && <p className="">{about.title}</p>}
 
         {/* Specialties */}
-        <section className="mt-[120px] border-t pt-[40px] md:pt-[60px]">
-          <h2 className="text-[48px] md:text-[80px] lg:text-[96px] leading-none mb-[30px] md:mb-[50px]">
-            Specialties
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[40px] md:gap-[60px] pb-[40px] md:pb-[80px] border-b">
+        <section className="">
+          <Title title="Specialties" />
+          <div className="grid grid-cols-3 gap-x-[8px]">
             {about?.specialties?.map((sp, i) => (
               <div key={i}>
-                <h3 className="text-[22px] md:text-[26px] mb-4">
-                  {sp.category}
-                </h3>
-                <ul className="space-y-2 text-white/70 text-[12px] md:text-[14px]">
+                <SubTitle title={sp.category} />
+                <ul className="text-base text-[#8C8C8C]">
                   {sp.items?.map((it, idx) => (
                     <li key={idx}>{it}</li>
                   ))}
@@ -43,18 +36,18 @@ const AboutPage = async () => {
         </section>
 
         {/* Manifesto */}
-        <section className="mt-[80px] md:mt-[120px]">
-          <h2 className="text-[48px] md:text-[80px] lg:text-[96px] leading-none mb-[20px] md:mb-[30px]">
-            Manifesto
-          </h2>
-          <div className="border-t">
+        <section>
+          <Title title="Manifesto" />
+          <div className="border-t border-white">
             {about?.manifesto?.map((m, i) => (
               <div
                 key={i}
-                className="grid grid-cols-1 md:grid-cols-2 gap-[20px] md:gap-[40px] py-[20px] md:py-[30px] border-b"
+                className="flex gap-x-[8px] pt-[6px] lg:pt-[20px] mb-[60px] md:mb-[100px] lg:mb-[160px]"
               >
-                <h3 className="text-[18px] md:text-[22px]">{m.title}</h3>
-                <p className="text-white/80 text-[12px] md:text-[14px] leading-relaxed">
+                <h2 className="text-md mb-[15px] md:mb-[35px] w-1/2">
+                  {m.title}
+                </h2>
+                <p className="w-1/2 text-base text-[#8C8C8C] whitespace-pre-line">
                   {m.content}
                 </p>
               </div>
@@ -63,29 +56,29 @@ const AboutPage = async () => {
         </section>
 
         {/* Clients + Awards */}
-        <section className="mt-[80px] md:mt-[120px] border-t pt-[20px] md:pt-[30px]">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] md:gap-[60px]">
-            <div>
-              <h3 className="text-[22px] md:text-[26px] mb-4">Clients</h3>
-              <ul className="columns-2 md:columns-3 gap-6 text-white/70 text-[12px] md:text-[14px] leading-relaxed">
+        <section className="my-[200px] lg:my-[400px]">
+          <div className="flex gap-x-[8px]">
+            <div className="w-1/2">
+              <SubTitle title="Clients" />
+              <ul className="text-base">
                 {about?.clients?.map((c, i) => (
                   <li key={i} className="break-inside-avoid">
                     {c.name}
                     {c.industry ? (
-                      <span className="text-white/50"> — {c.industry}</span>
+                      <span className="text-[#8C8C8C]">
+                        &nbsp; {c.industry}
+                      </span>
                     ) : null}
                   </li>
                 ))}
               </ul>
             </div>
-            <div>
-              <h3 className="text-[22px] md:text-[26px] mb-4">
-                Awards & Showcases
-              </h3>
-              <ul className="text-white/70 text-[12px] md:text-[14px] space-y-1">
+            <div className="w-1/2">
+              <SubTitle title="Awards & Showcases" />
+              <ul className="text-base">
                 {awards.map((a, i) => (
                   <li key={i}>
-                    <span className="text-white">{a.title}</span>
+                    <span className="text-[#8C8C8C]">&nbsp; {a.title}</span>
                     {a.year ? ` ${a.year}` : ""}
                   </li>
                 ))}
@@ -93,20 +86,27 @@ const AboutPage = async () => {
             </div>
           </div>
         </section>
-
-        {/* CTAs */}
-        <section className="mt-[80px] md:mt-[120px] border-t pt-[20px] md:pt-[30px] pb-[60px]">
-          <div className="grid grid-cols-6 md:grid-cols-12 items-center text-[18px] md:text-[24px] lg:text-[22px]">
-            <div className="col-span-6 md:col-span-6">See our projects →</div>
-            <div className="col-span-6 md:col-span-6 underline underline-offset-4">
-              <Link href="mailto:hi@functionlab.design">
-                hi@functionlab.design
-              </Link>
-            </div>
-          </div>
-        </section>
+      </div>
+      <div className="w-full padding-x mb-[15px] md:mb-[30px] lg:mb-[90px]">
+        <Redirect text="See our projects →" href={`/work`} />
       </div>
     </div>
+  );
+};
+
+const Title = ({ title }) => {
+  return (
+    <h1 className="text-lg py-[6px] lg:py-[20px] mt-[200px] lg:mt-[400px] mb-[90px] md:mb-[150px] lg:mb-[200px] border-t border-white">
+      {title}
+    </h1>
+  );
+};
+
+const SubTitle = ({ title }) => {
+  return (
+    <h2 className="text-md py-[6px] lg:py-[20px] mb-[15px] md:mb-[35px] border-t border-white">
+      {title}
+    </h2>
   );
 };
 

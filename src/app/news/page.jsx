@@ -17,7 +17,7 @@ const NewsPage = async () => {
   return (
     <div>
       {NEWS.info && <Info info={NEWS.info} />}
-      <div className="px-[15px] md:px-[30px]">
+      <div className="px-[15px] md:px-[30px] mt-[60px] md:mt-[30px] lg:mt-[200px]">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-x-[6px] gap-y-[60px] lg:gap-x-[30px] lg:gap-y-[30px]">
           {newsWithImageInfo.map(
             ({ cover: { imgUrl, ratio }, title, date }, index) => (
