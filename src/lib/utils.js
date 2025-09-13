@@ -32,3 +32,23 @@ export function getVideoUrl(url) {
   const fileName = url.match(fileNameRegex);
   return `https://cdn.sanity.io/files/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/production/${fileName[1]}.${extension}`;
 }
+
+export function renderStarEmphasis(text) {
+  const parts = [];
+  let last = 0;
+  const re = /\*(.+?)\*/g;
+  let m;
+  let i = 0;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last)
+      parts.push(<span key={i++}>{text.slice(last, m.index)}</span>);
+    parts.push(
+      <span key={i++} className="text-[#8C8C8C]">
+        {m[1]}
+      </span>
+    );
+    last = re.lastIndex;
+  }
+  if (last < text.length) parts.push(<span key={i++}>{text.slice(last)}</span>);
+  return parts;
+}

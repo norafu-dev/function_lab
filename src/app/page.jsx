@@ -4,27 +4,17 @@ import {
   WORKS_QUERY_IN_HOMEPAGE,
 } from "@/sanity/lib/queries";
 import NewsList from "@/components/news/NewsList";
-import { HOME } from "@/lib/data";
-import Info from "@/components/Info";
 import { Title } from "@/app/about/page";
 import Redirect from "@/components/Redirect";
 import WorkCard from "@/components/work/WorkCard";
+import Hero from "@/components/home/Hero";
 
 const Home = async () => {
   const news = await client.fetch(NEWS_QUERY_IN_HOMEPAGE);
   const works = await client.fetch(WORKS_QUERY_IN_HOMEPAGE);
   return (
     <main>
-      <section className="h-screen overflow-hidden">
-        <video
-          src="/video/home.mp4"
-          autoPlay
-          muted
-          loop
-          className="w-full h-full object-cover"
-        />
-      </section>
-      {HOME.info && <Info info={HOME.info} />}
+      <Hero />
       <section className="mt-[30px] lg:mt-[200px]">
         {works.map((work) => (
           <WorkCard key={work.title} work={work} />

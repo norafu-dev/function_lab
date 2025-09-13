@@ -1,30 +1,14 @@
-const Info = ({ info }) => {
-  const renderStarEmphasis = (text) => {
-    const parts = [];
-    let last = 0;
-    const re = /\*(.+?)\*/g;
-    let m;
-    let i = 0;
+import { cn } from "@/lib/cn";
+import { renderStarEmphasis } from "@/lib/utils";
 
-    while ((m = re.exec(text)) !== null) {
-      if (m.index > last) {
-        parts.push(<span key={i++}>{text.slice(last, m.index)}</span>);
-      }
-      parts.push(
-        <span key={i++} className="text-[#8C8C8C]">
-          {m[1]}
-        </span>
-      );
-      last = re.lastIndex;
-    }
-    if (last < text.length) {
-      parts.push(<span key={i++}>{text.slice(last)}</span>);
-    }
-    return parts;
-  };
-
+const Info = ({ info, className }) => {
   return (
-    <h1 className="w-full px-[15px] md:px-[30px] mt-[250px] lg:mt-[392px] text-md">
+    <h1
+      className={cn(
+        "w-full px-[15px] md:px-[30px] mt-[250px] lg:mt-[392px] text-md",
+        className
+      )}
+    >
       {renderStarEmphasis(info)}
     </h1>
   );
