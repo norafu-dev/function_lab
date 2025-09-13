@@ -2,6 +2,7 @@ import { client } from "@/sanity/lib/client";
 import { WORKS_QUERY } from "@/sanity/lib/queries";
 import Categories from "@/components/work/Categories";
 import WorkList from "@/components/work/WorkList";
+import { Suspense } from "react";
 
 const WorkListPage = async () => {
   const categories = [
@@ -14,8 +15,12 @@ const WorkListPage = async () => {
 
   return (
     <div className="mt-[250px] md:mt-[390px]">
-      <Categories categories={categories} />
-      <WorkList works={works} />
+      <Suspense fallback={null}>
+        <Categories categories={categories} />
+      </Suspense>
+      <Suspense fallback={null}>
+        <WorkList works={works} />
+      </Suspense>
     </div>
   );
 };
