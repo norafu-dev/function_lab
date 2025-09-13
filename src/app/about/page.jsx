@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { ABOUT_QUERY } from "@/sanity/lib/queries";
 import { ABOUT } from "@/lib/data";
 import Info from "@/components/Info";
 import Redirect from "@/components/Redirect";
+import { cn } from "@/lib/cn";
 
 const AboutPage = async () => {
   const about = await client.fetch(ABOUT_QUERY);
@@ -94,9 +94,14 @@ const AboutPage = async () => {
   );
 };
 
-const Title = ({ title }) => {
+const Title = ({ title, className }) => {
   return (
-    <h1 className="text-lg py-[6px] lg:py-[20px] mt-[200px] lg:mt-[400px] mb-[90px] md:mb-[150px] lg:mb-[200px] border-t border-white">
+    <h1
+      className={cn(
+        "text-lg py-[6px] lg:py-[20px] mt-[200px] lg:mt-[400px] mb-[90px] md:mb-[150px] lg:mb-[200px] border-t border-white",
+        className
+      )}
+    >
       {title}
     </h1>
   );
@@ -111,3 +116,4 @@ const SubTitle = ({ title }) => {
 };
 
 export default AboutPage;
+export { Title };

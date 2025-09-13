@@ -25,6 +25,24 @@ const WORKS_QUERY = defineQuery(`
   }
 `);
 
+const WORKS_QUERY_IN_HOMEPAGE = defineQuery(`
+  *[_type == "work" && homepage == true] | order(homepageOrder asc, title asc){
+    title,
+    "slug": slug.current,
+    "hero": select(
+      defined(cover.video.file.asset) => {
+        "type": "video",
+        "file": cover.video.file.asset._ref,
+        "thumbnail": cover.video.thumbnail.asset._ref
+      },
+      defined(cover.image.asset) => {
+        "type": "image",
+        "image": cover.image.asset._ref
+      }
+    )
+  }
+  `);
+
 const WORK_QUERY_BY_SLUG = defineQuery(`
   *[_type == "work" && slug.current == $slug][0]{
     title,
@@ -113,6 +131,14 @@ const NEWS_QUERY = defineQuery(`
   }
   `);
 
+const NEWS_QUERY_IN_HOMEPAGE = defineQuery(`
+  *[_type == "news"] | order(date desc)[0...6]{
+    title,
+    date,
+    "cover": cover.asset._ref
+  }
+  `);
+
 const LAB_QUERY = defineQuery(`
   *[_type == "lab"] | order(date desc){
     title,
@@ -129,5 +155,7 @@ export {
   NEWS_QUERY,
   LAB_QUERY,
   WORK_QUERY_BY_SLUG,
+  WORKS_QUERY_IN_HOMEPAGE,
   NEXT_WORK_BY_WORK_PAGE_ORDER,
+  NEWS_QUERY_IN_HOMEPAGE,
 };
