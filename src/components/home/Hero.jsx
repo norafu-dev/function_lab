@@ -55,12 +55,13 @@ const Hero = () => {
           autoPlay
           muted
           loop
+          playsInline
           className="w-full h-full object-cover hero-video"
         />
       </figure>
 
       {HOME.info && (
-        <p className="hero-info absolute left-0 right-0 top-0 mt-0 translate-y-[110vh] text-md">
+        <p className="hero-info absolute left-0 right-0 top-0 mt-0 translate-y-[110vh] text-md padding-x">
           {renderStarEmphasis(HOME.info)}
         </p>
       )}

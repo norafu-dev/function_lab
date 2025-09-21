@@ -44,8 +44,8 @@ const WanderItem = ({
     state.current.y = Math.random() * (screenH + marginY * 2) - marginY;
 
     // 速度范围与最大转向速率（越小弧线越柔）
-    const speedMin = 20; // px/s
-    const speedMax = 60; // px/s
+    const speedMin = 14; // px/s
+    const speedMax = 24; // px/s
     const maxTurnRate = 1.8; // rad/s
     const arriveDist = 80; // 接近该距离后切换新目标
 

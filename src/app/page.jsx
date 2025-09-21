@@ -17,7 +17,9 @@ const Home = async () => {
       <Hero />
       <section className="mt-[30px] lg:mt-[200px]">
         {works.map((work) => (
-          <WorkCard key={work.title} work={work} />
+          <div className="pb-[6px]" key={work.title}>
+            <WorkCard work={work} />
+          </div>
         ))}
       </section>
       <Redirect

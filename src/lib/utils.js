@@ -43,7 +43,7 @@ export function renderStarEmphasis(text) {
     if (m.index > last)
       parts.push(<span key={i++}>{text.slice(last, m.index)}</span>);
     parts.push(
-      <span key={i++} className="text-[#8C8C8C]">
+      <span key={i++} className="text-secondary">
         {m[1]}
       </span>
     );

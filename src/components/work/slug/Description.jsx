@@ -7,7 +7,7 @@ const Description = ({ title, description, tags, year }) => {
       <h1 className="text-md mb-[30px] md:mb-[90px]">{title}</h1>
 
       <div className="grid-layout text-base">
-        <div className="col-span-3 flex flex-col justify-between">
+        <div className="col-span-3 flex flex-col justify-between h-[72px] lg:h-[112px]">
           {tags.length > 0 && (
             <div className="">
               {tags.map((t, i) => (

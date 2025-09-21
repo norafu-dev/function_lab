@@ -6,7 +6,7 @@ const Redirect = ({ text, href, className }) => {
     <Link
       href={href}
       className={cn(
-        "block w-full text-md pt-[6px] md:pt-[10px] lg:pt-[20px] border-t border-white",
+        "block w-full text-md pt-[6px] md:pt-[10px] lg:pt-[20px] border-t border-secondary",
         className
       )}
     >

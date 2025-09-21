@@ -21,11 +21,11 @@ const AboutPage = async () => {
         {/* Specialties */}
         <section className="">
           <Title title="Specialties" />
-          <div className="grid grid-cols-3 gap-x-[8px]">
+          <div className="grid grid-cols-3 gap-x-[6px]">
             {about?.specialties?.map((sp, i) => (
               <div key={i}>
                 <SubTitle title={sp.category} />
-                <ul className="text-base text-[#8C8C8C]">
+                <ul className="text-base text-secondary">
                   {sp.items?.map((it, idx) => (
                     <li key={idx}>{it}</li>
                   ))}
@@ -38,16 +38,19 @@ const AboutPage = async () => {
         {/* Manifesto */}
         <section>
           <Title title="Manifesto" />
-          <div className="border-t border-white">
+          <div className="border-t border-secondary">
             {about?.manifesto?.map((m, i) => (
               <div
                 key={i}
-                className="flex gap-x-[8px] pt-[6px] lg:pt-[20px] mb-[60px] md:mb-[100px] lg:mb-[160px]"
+                className={cn(
+                  "flex gap-x-[6px] pt-[6px] lg:pt-[20px] mb-[60px] md:mb-[100px] lg:mb-[160px]",
+                  i != 0 && "border-t border-secondary"
+                )}
               >
                 <h2 className="text-md mb-[15px] md:mb-[35px] w-1/2">
                   {m.title}
                 </h2>
-                <p className="w-1/2 text-base text-[#8C8C8C] whitespace-pre-line">
+                <p className="w-1/2 text-base text-secondary whitespace-pre-line">
                   {m.content}
                 </p>
               </div>
@@ -57,7 +60,7 @@ const AboutPage = async () => {
 
         {/* Clients + Awards */}
         <section className="my-[200px] lg:my-[400px]">
-          <div className="flex gap-x-[8px]">
+          <div className="flex gap-x-[6px]">
             <div className="w-1/2">
               <SubTitle title="Clients" />
               <ul className="text-base">
@@ -65,7 +68,7 @@ const AboutPage = async () => {
                   <li key={i} className="break-inside-avoid">
                     {c.name}
                     {c.industry ? (
-                      <span className="text-[#8C8C8C]">
+                      <span className="text-secondary">
                         &nbsp; {c.industry}
                       </span>
                     ) : null}
@@ -78,7 +81,7 @@ const AboutPage = async () => {
               <ul className="text-base">
                 {awards.map((a, i) => (
                   <li key={i}>
-                    <span className="text-[#8C8C8C]">&nbsp; {a.title}</span>
+                    <span className="text-secondary">&nbsp; {a.title}</span>
                     {a.year ? ` ${a.year}` : ""}
                   </li>
                 ))}
@@ -98,7 +101,7 @@ const Title = ({ title, className }) => {
   return (
     <h1
       className={cn(
-        "text-lg py-[6px] lg:py-[20px] mt-[200px] lg:mt-[400px] mb-[90px] md:mb-[150px] lg:mb-[200px] border-t border-white",
+        "text-lg py-[6px] lg:py-[20px] mt-[200px] lg:mt-[400px] mb-[90px] md:mb-[150px] lg:mb-[200px] border-t border-secondary",
         className
       )}
     >
@@ -109,7 +112,7 @@ const Title = ({ title, className }) => {
 
 const SubTitle = ({ title }) => {
   return (
-    <h2 className="text-md py-[6px] lg:py-[20px] mb-[15px] md:mb-[35px] border-t border-white">
+    <h2 className="text-md py-[6px] lg:py-[20px] mb-[15px] md:mb-[35px] border-t border-secondary">
       {title}
     </h2>
   );

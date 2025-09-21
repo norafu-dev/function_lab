@@ -28,7 +28,7 @@ export default function LaptopNav() {
   const pathname = usePathname();
   const isActive = (href) => pathname.includes(href);
   return (
-    <nav className="fixed top-0 left-0 w-full flex items-center justify-between h-[89px] px-[30px] font-chivo z-100 select-none">
+    <nav className="fixed top-0 left-0 w-full flex items-center justify-between h-[89px] px-[30px] text-[12px] leading-[20px] font-chivo z-100 select-none">
       <Link href="/">
         <Image src="/logo.svg" alt="Function Lab" width={109} height={14} />
       </Link>
@@ -44,7 +44,7 @@ export default function LaptopNav() {
             <Link href={route.href}>{route.label}</Link>
           </li>
         ))}
-        <li className="px-[15px] py-[5px] rounded-full border border-white hover:bg-white hover:text-black transition-all duration-300">
+        <li className="px-[15px] py-[5px] rounded-full border border-secondary hover:bg-white hover:text-black transition-all duration-300">
           <Link href="mailto:hi@functionlab.design">Contact</Link>
         </li>
       </ul>
