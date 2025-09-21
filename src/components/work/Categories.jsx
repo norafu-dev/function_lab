@@ -9,7 +9,7 @@ const Categories = ({ categories }) => {
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get("category");
   return (
-    <ul className="flex items-center gap-2 px-[15px] mb-[30px] text-[12px] leading-[20px] font-chivo select-none">
+    <ul className="flex items-center gap-2 padding-x mb-[30px] text-[12px] leading-[20px] font-chivo select-none">
       {categories.map((category, index) => {
         const { label, href } = category;
         const normalized = label.toLowerCase();

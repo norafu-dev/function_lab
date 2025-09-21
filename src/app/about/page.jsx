@@ -21,9 +21,9 @@ const AboutPage = async () => {
         {/* Specialties */}
         <section className="">
           <Title title="Specialties" />
-          <div className="grid grid-cols-3 gap-x-[6px]">
+          <div className="grid-layout">
             {about?.specialties?.map((sp, i) => (
-              <div key={i}>
+              <div key={i} className="col-span-4">
                 <SubTitle title={sp.category} />
                 <ul className="text-base text-secondary">
                   {sp.items?.map((it, idx) => (
@@ -43,14 +43,14 @@ const AboutPage = async () => {
               <div
                 key={i}
                 className={cn(
-                  "flex gap-x-[6px] pt-[6px] lg:pt-[20px] mb-[60px] md:mb-[100px] lg:mb-[160px]",
+                  "grid-layout pt-[6px] lg:pt-[20px] mb-[60px] md:mb-[100px] lg:mb-[160px]",
                   i != 0 && "border-t border-secondary"
                 )}
               >
-                <h2 className="text-md mb-[15px] md:mb-[35px] w-1/2">
+                <h2 className="col-span-6 mb-[15px] md:mb-[35px] text-md">
                   {m.title}
                 </h2>
-                <p className="w-1/2 text-base text-secondary whitespace-pre-line">
+                <p className="col-span-6 text-base text-secondary whitespace-pre-line">
                   {m.content}
                 </p>
               </div>
@@ -60,28 +60,28 @@ const AboutPage = async () => {
 
         {/* Clients + Awards */}
         <section className="my-[200px] lg:my-[400px]">
-          <div className="flex gap-x-[6px]">
-            <div className="w-1/2">
+          <div className="grid-layout">
+            <div className="col-span-6">
               <SubTitle title="Clients" />
               <ul className="text-base">
                 {about?.clients?.map((c, i) => (
                   <li key={i} className="break-inside-avoid">
                     {c.name}
                     {c.industry ? (
-                      <span className="text-secondary">
-                        &nbsp; {c.industry}
+                      <span className="text-secondary pr-[5px]">
+                        {c.industry}
                       </span>
                     ) : null}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="w-1/2">
+            <div className="col-span-6">
               <SubTitle title="Awards & Showcases" />
               <ul className="text-base">
                 {awards.map((a, i) => (
                   <li key={i}>
-                    <span className="text-secondary">&nbsp; {a.title}</span>
+                    <span className="text-secondary pr-[5px]">{a.title}</span>
                     {a.year ? ` ${a.year}` : ""}
                   </li>
                 ))}
@@ -112,7 +112,7 @@ const Title = ({ title, className }) => {
 
 const SubTitle = ({ title }) => {
   return (
-    <h2 className="text-md py-[6px] lg:py-[20px] mb-[15px] md:mb-[35px] border-t border-secondary">
+    <h2 className="text-md py-[6px] lg:py-[20px] mb-[30px] border-t border-secondary">
       {title}
     </h2>
   );

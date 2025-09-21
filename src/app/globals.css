@@ -17,13 +17,13 @@ body {
 
 @layer utilities {
   .text-lg {
-    @apply text-[56px] lg:text-[150px] leading-[60px] lg:leading-[150px];
+    @apply text-[56px] lg:text-[150px] leading-[60px] lg:leading-[150px] tracking-[-0.018em];
   }
   .text-md {
-    @apply text-[24px] lg:text-[56px] leading-[26px] lg:leading-[60px];
+    @apply text-[24px] lg:text-[56px] leading-[26px] lg:leading-[60px] tracking-[-0.009em];
   }
   .text-base {
-    @apply text-[12px] md:text-[15px] lg:text-[22px] leading-[15px] md:leading-[18px] lg:leading-[28px];
+    @apply text-[12px] md:text-[15px] lg:text-[22px] leading-[15px] md:leading-[18px] lg:leading-[28px] tracking-[-0.0045em];
   }
 
   .padding-x {
