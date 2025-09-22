@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/cn";
-import { LinearBlur } from "progressive-blur";
+import LinearBlur from "./LinearBlur";
 
 const ROUTES = [
   {
