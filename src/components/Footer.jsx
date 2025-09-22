@@ -1,6 +1,12 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
+  const pathname = usePathname();
+  const isStudio = pathname.includes("/studio");
+  if (isStudio) return null;
   return (
     <footer className="w-full padding-x footer-text">
       <div className="grid-layout mb-[200px] md:mb-[300px] lg:mb-[400px] pt-[6px] md:pt-[10px] lg:pt-[20px] border-t">
