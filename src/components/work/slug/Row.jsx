@@ -7,7 +7,7 @@ const Row = ({ items = [], alt }) => {
 
   return (
     <div
-      className={`${twoCols ? "grid grid-cols-2 gap-[6px]" : ""} mb-[6px] md:mb-[8px]`}
+      className={`${twoCols ? "grid grid-cols-2 gap-[6px]" : ""} mb-[6px] padding-x`}
     >
       {twoCols ? (
         <>

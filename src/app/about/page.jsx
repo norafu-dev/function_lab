@@ -50,7 +50,7 @@ const AboutPage = async () => {
                 <h2 className="col-span-6 mb-[15px] md:mb-[35px] text-md">
                   {m.title}
                 </h2>
-                <p className="col-span-6 text-base text-secondary whitespace-pre-line">
+                <p className="col-span-6 text-base text-secondary whitespace-pre-line md:translate-y-[2px] lg:translate-y-[8px]">
                   {m.content}
                 </p>
               </div>

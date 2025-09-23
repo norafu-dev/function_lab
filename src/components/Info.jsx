@@ -5,7 +5,7 @@ const Info = ({ info, className }) => {
   return (
     <h1
       className={cn(
-        "w-full px-[15px] md:px-[30px] mt-[250px] lg:mt-[392px] text-md",
+        "w-full px-[15px] md:px-[30px] mt-[250px] lg:mt-[392px] text-md select-none",
         className
       )}
     >
