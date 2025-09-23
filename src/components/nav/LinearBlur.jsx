@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const oppositeSide = {
   left: "right",
@@ -18,6 +18,12 @@ export default function LinearBlur({
   style,
   ...props
 }) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const actualSteps = Math.max(1, steps);
   const step = falloffPercentage / actualSteps;
 
@@ -29,6 +35,26 @@ export default function LinearBlur({
   const getBackdrop = (i) =>
     `blur(${factor * base ** (actualSteps - i - 1)}px)`;
   const dir = `to ${oppositeSide[side]}`;
+
+  // 在客户端渲染之前，返回一个占位符
+  if (!isClient) {
+    return (
+      <div
+        {...props}
+        style={{ pointerEvents: "none", transformOrigin: side, ...style }}
+      >
+        <div
+          style={{
+            position: "relative",
+            zIndex: 0,
+            width: "100%",
+            height: "100%",
+            background: `linear-gradient(${dir}, ${tint} 0%, transparent 100%)`,
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div

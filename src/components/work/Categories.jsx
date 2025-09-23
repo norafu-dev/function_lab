@@ -20,7 +20,7 @@ const Categories = ({ categories }) => {
           <li
             key={index}
             className={cn(
-              "px-[15px] py-[5px] rounded-full border border-secondary transition-all duration-300",
+              "px-[15px] py-[5px] rounded-full border border-white transition-all duration-300",
               isActive && "bg-white text-black",
               !isActive && "hover:bg-white hover:text-black "
             )}
