@@ -42,19 +42,18 @@ const WanderItem = ({
     // 初始随机位置（允许超出视窗一定边距）
     const marginX = screenW * 0.25;
     const effectiveCanvasHeight = canvasHeight ?? screenH;
-    const marginY = effectiveCanvasHeight * 0.25;
+    const minY = 0;
+    const maxY = Math.max(0, effectiveCanvasHeight - heightPx);
+    state.current.minY = minY;
+    state.current.maxY = maxY;
+    state.current.heightPx = heightPx;
     state.current.x = Math.random() * (screenW + marginX * 2) - marginX;
     if (typeof initialY === "number") {
-      const minY = -marginY;
-      const maxY = effectiveCanvasHeight + marginY - heightPx;
-      const clampedY = Math.min(
-        Math.max(initialY, minY),
-        Number.isFinite(maxY) ? maxY : initialY
-      );
+      const clampedY = Math.min(Math.max(initialY, minY), maxY);
       state.current.y = clampedY;
     } else {
       state.current.y =
-        Math.random() * (effectiveCanvasHeight + marginY * 2) - marginY;
+        maxY > minY ? minY + Math.random() * (maxY - minY) : minY;
     }
 
     // 速度范围与最大转向速率（越小弧线越柔）
@@ -66,8 +65,7 @@ const WanderItem = ({
     function pickTarget() {
       // 目标点可在视窗外一定边距，路径更自然
       const tx = Math.random() * (screenW + marginX * 2) - marginX;
-      const ty =
-        Math.random() * (effectiveCanvasHeight + marginY * 2) - marginY;
+      const ty = maxY > minY ? minY + Math.random() * (maxY - minY) : minY;
       state.current.targetX = tx;
       state.current.targetY = ty;
     }
@@ -100,6 +98,8 @@ const WanderItem = ({
         // 均速前进（也可在范围内缓慢波动速度）
         s.x += Math.cos(s.angle) * s.speed * dt;
         s.y += Math.sin(s.angle) * s.speed * dt;
+        if (s.y < minY) s.y = minY;
+        if (s.y > maxY) s.y = maxY;
 
         // 接近目标则切换新目标
         const dist2 = dx * dx + dy * dy;
@@ -143,7 +143,12 @@ const WanderItem = ({
     const dx = e.clientX - state.current.startX;
     const dy = e.clientY - state.current.startY;
     state.current.x = state.current.baseX + dx;
-    state.current.y = state.current.baseY + dy;
+    const minY = state.current.minY ?? 0;
+    const maxY =
+      state.current.maxY ??
+      Math.max(0, (canvasHeight ?? screenH) - (state.current.heightPx ?? 0));
+    const nextY = state.current.baseY + dy;
+    state.current.y = Math.min(Math.max(nextY, minY), maxY);
     el.style.transform = `translate(${state.current.x}px, ${state.current.y}px)`;
   };
 
