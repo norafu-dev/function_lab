@@ -18,7 +18,7 @@ const Home = async () => {
       <section className="mt-[30px] lg:mt-[200px]">
         {works.map((work) => (
           <div className="pb-[6px]" key={work.title}>
-            <WorkCard work={work} />
+            <WorkCard work={work} autoplay={true} />
           </div>
         ))}
       </section>

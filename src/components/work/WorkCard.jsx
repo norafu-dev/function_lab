@@ -3,15 +3,18 @@
 import Link from "next/link";
 import ImageCard from "./ImageCard";
 import VideoCard from "./VideoCard";
+import AutoPlayVideoCard from "./AutoPlayVideoCard";
 import LinearBlur from "@/components/nav/LinearBlur";
 
-const WorkCard = ({ work }) => {
+const WorkCard = ({ work, autoplay }) => {
   const { hero, slug, title } = work;
   return (
     <div className="relative group aspect-[1440/810] overflow-hidden">
       <Link href={`/work/${slug}`}>
         {hero.type === "image" ? (
           <ImageCard src={hero} alt={title} />
+        ) : autoplay ? (
+          <AutoPlayVideoCard src={hero} alt={title} />
         ) : (
           <VideoCard src={hero} alt={title} />
         )}

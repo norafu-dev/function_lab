@@ -1,5 +1,5 @@
 import ImageCard from "../ImageCard";
-import VideoCard from "../VideoCard";
+import AutoPlayVideoCard from "../AutoPlayVideoCard";
 
 const Hero = ({ cover, title }) => {
   return (
@@ -7,7 +7,7 @@ const Hero = ({ cover, title }) => {
       {cover.type === "image" ? (
         <ImageCard src={cover} alt={title} />
       ) : (
-        <VideoCard src={cover} alt={title} />
+        <AutoPlayVideoCard src={cover} alt={title} />
       )}
     </div>
   );

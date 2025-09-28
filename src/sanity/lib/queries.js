@@ -7,23 +7,23 @@ const HOMEPAGE_QUERY = defineQuery(
 );
 
 const WORKS_QUERY = defineQuery(`
-*[_type == "work"] | order(workPageOrder asc, title asc){
-    title,
-    "slug": slug.current,
-    category,
-    "hero": select(
-      defined(hero.video.file.asset) => {
-        "type": "video",
-        "file": hero.video.file.asset._ref,
-        "thumbnail": hero.video.thumbnail.asset._ref
-      },
-      defined(hero.image.asset) => {
-        "type": "image",
-        "image": hero.image.asset._ref
-      }
-    )
-  }
-`);
+  *[_type == "work"] | order(workPageOrder asc, title asc){
+      title,
+      "slug": slug.current,
+      "category": coalesce(category, []),
+      "hero": select(
+        defined(hero.video.file.asset) => {
+          "type": "video",
+          "file": hero.video.file.asset._ref,
+          "thumbnail": hero.video.thumbnail.asset._ref
+        },
+        defined(hero.image.asset) => {
+          "type": "image",
+          "image": hero.image.asset._ref
+        }
+      )
+    }
+  `);
 
 const WORKS_QUERY_IN_HOMEPAGE = defineQuery(`
   *[_type == "work" && homepage == true] | order(homepageOrder asc, title asc){
@@ -76,22 +76,26 @@ const WORK_QUERY_BY_SLUG = defineQuery(`
     ),
 
     "rows": [
-      coalesce(row1, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref },
-      coalesce(row2, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref },
-      coalesce(row3, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref },
-      coalesce(row4, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref },
-      coalesce(row5, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref },
-      coalesce(row6, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref },
-      coalesce(row7, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref },
-      coalesce(row8, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref },
-      coalesce(row9, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref },
-      coalesce(row10, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref },
-      coalesce(row11, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref },
-      coalesce(row12, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref },
-      coalesce(row13, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref },
-      coalesce(row14, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref },
-      coalesce(row15, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref },
-      coalesce(row16, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref }
+      coalesce(row1, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row2, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row3, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row4, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row5, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row6, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay  },
+      coalesce(row7, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row8, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row9, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row10, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row11, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row12, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row13, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row14, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row15, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row16, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row17, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row18, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row19, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay },
+      coalesce(row20, [])[]{ "type": select(defined(video.file.asset) => "video", defined(image.asset) => "image"), "image": image.asset._ref, "file": video.file.asset._ref, "thumbnail": video.thumbnail.asset._ref, "autoplay": video.autoplay }
     ]
   }
 `);

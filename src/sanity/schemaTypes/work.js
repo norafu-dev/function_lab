@@ -29,9 +29,14 @@ const work = {
     {
       name: "category",
       title: "Category",
-      type: "string",
+      type: "array",
+      of: [{ type: "string" }],
       options: {
-        list: ["Brand", "Print", "Digital"],
+        list: [
+          { title: "Brand", value: "Brand" },
+          { title: "Print", value: "Print" },
+          { title: "Digital", value: "Digital" },
+        ],
       },
     },
     {
@@ -157,6 +162,11 @@ const work = {
                   title: "Thumbnail",
                   type: "image",
                 },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
               ],
             },
           ],
@@ -193,6 +203,11 @@ const work = {
                   name: "thumbnail",
                   title: "Thumbnail",
                   type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
                 },
               ],
             },
@@ -231,6 +246,11 @@ const work = {
                   title: "Thumbnail",
                   type: "image",
                 },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
               ],
             },
           ],
@@ -267,6 +287,11 @@ const work = {
                   name: "thumbnail",
                   title: "Thumbnail",
                   type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
                 },
               ],
             },
@@ -305,6 +330,11 @@ const work = {
                   title: "Thumbnail",
                   type: "image",
                 },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
               ],
             },
           ],
@@ -341,6 +371,11 @@ const work = {
                   name: "thumbnail",
                   title: "Thumbnail",
                   type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
                 },
               ],
             },
@@ -379,6 +414,11 @@ const work = {
                   title: "Thumbnail",
                   type: "image",
                 },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
               ],
             },
           ],
@@ -415,6 +455,11 @@ const work = {
                   name: "thumbnail",
                   title: "Thumbnail",
                   type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
                 },
               ],
             },
@@ -453,6 +498,11 @@ const work = {
                   title: "Thumbnail",
                   type: "image",
                 },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
               ],
             },
           ],
@@ -490,6 +540,221 @@ const work = {
                   title: "Thumbnail",
                   type: "image",
                 },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row11",
+      title: "Row 11",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row12",
+      title: "Row 12",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row13",
+      title: "Row 13",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row14",
+      title: "Row 14",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row15",
+      title: "Row 15",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
               ],
             },
           ],
@@ -526,6 +791,174 @@ const work = {
                   name: "thumbnail",
                   title: "Thumbnail",
                   type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row17",
+      title: "Row 17",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row18",
+      title: "Row 18",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row19",
+      title: "Row 19",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row20",
+      title: "Row 20",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
                 },
               ],
             },

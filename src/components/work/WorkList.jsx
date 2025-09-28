@@ -24,13 +24,20 @@ const WorkList = ({ works }) => {
   return (
     <div className="lg:grid lg:grid-cols-2 gap-[6px] mb-[200px]">
       {!categoryParam
-        ? validWorks.map((work) => <WorkCard key={work.title} work={work} />)
+        ? validWorks.map((work) => (
+            <WorkCard key={work.title} work={work} autoplay={true} />
+          ))
         : validWorks
             .filter(
               (work) =>
-                work.category && work.category.toLowerCase() === categoryParam
+                Array.isArray(work.category) &&
+                work.category
+                  .map((item) => item.toLowerCase())
+                  .includes(categoryParam)
             )
-            .map((work) => <WorkCard key={work.title} work={work} />)}
+            .map((work) => (
+              <WorkCard key={work.title} work={work} autoplay={true} />
+            ))}
     </div>
   );
 };

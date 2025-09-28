@@ -2,20 +2,18 @@
 
 import { getVideoUrl, getImageInfo } from "@/lib/utils";
 
-const VideoCard = ({ src }) => {
-  const { file, thumbnail, autoplay } = src;
+const AutoPlayVideoCard = ({ src }) => {
+  const { file, thumbnail } = src;
   const videoUrl = getVideoUrl(file);
   const imgUrl = thumbnail ? getImageInfo(thumbnail).imgUrl : null;
-  console.log(autoplay ? "autoplay" : "not autoplay");
 
   return (
     <video
       className="block w-full h-full object-cover"
       poster={imgUrl}
-      autoPlay={autoplay}
-      controls={!autoplay}
-      muted={autoplay}
-      loop={autoplay}
+      autoPlay
+      muted
+      loop
       playsInline
     >
       <source src={videoUrl} />
@@ -23,4 +21,4 @@ const VideoCard = ({ src }) => {
   );
 };
 
-export default VideoCard;
+export default AutoPlayVideoCard;

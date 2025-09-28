@@ -15,7 +15,8 @@ const Categories = ({ categories }) => {
         const normalized = label.toLowerCase();
         const isActive =
           (categoryParam === null && normalized === "all") ||
-          categoryParam === normalized;
+          (Array.isArray(categoryParam?.split(",")) &&
+            categoryParam?.split(",").includes(normalized));
         return (
           <li
             key={index}
