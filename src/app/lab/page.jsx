@@ -10,9 +10,8 @@ const LabPage = async () => {
   return (
     <div>
       {LAB.info && <Info info={LAB.info} />}
-      <div className="w-full h-[100vh] sm:h-[200vh] mt-[60px] md:mt-[200px]">
-        <DomWanderCanvas lab={lab} />
-      </div>
+      <div className="w-full mt-[60px] md:mt-[200px]"></div>
+      <DomWanderCanvas lab={lab} />
       <div className="w-full padding-x mb-[15px] md:mb-[30px] lg:mb-[90px]">
         <Redirect text="See our projects →" href={`/work`} />
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import useViewport from "@/hooks/useViewport";
 import { getImageInfo } from "@/lib/utils";
 
@@ -14,6 +14,8 @@ const WanderItem = ({
   screenH,
   dragEnabled,
   bringToFront,
+  initialY,
+  canvasHeight,
 }) => {
   const elRef = useRef(null);
   const state = useRef({
@@ -39,9 +41,21 @@ const WanderItem = ({
 
     // 初始随机位置（允许超出视窗一定边距）
     const marginX = screenW * 0.25;
-    const marginY = screenH * 0.25;
+    const effectiveCanvasHeight = canvasHeight ?? screenH;
+    const marginY = effectiveCanvasHeight * 0.25;
     state.current.x = Math.random() * (screenW + marginX * 2) - marginX;
-    state.current.y = Math.random() * (screenH + marginY * 2) - marginY;
+    if (typeof initialY === "number") {
+      const minY = -marginY;
+      const maxY = effectiveCanvasHeight + marginY - heightPx;
+      const clampedY = Math.min(
+        Math.max(initialY, minY),
+        Number.isFinite(maxY) ? maxY : initialY
+      );
+      state.current.y = clampedY;
+    } else {
+      state.current.y =
+        Math.random() * (effectiveCanvasHeight + marginY * 2) - marginY;
+    }
 
     // 速度范围与最大转向速率（越小弧线越柔）
     const speedMin = 14; // px/s
@@ -52,7 +66,8 @@ const WanderItem = ({
     function pickTarget() {
       // 目标点可在视窗外一定边距，路径更自然
       const tx = Math.random() * (screenW + marginX * 2) - marginX;
-      const ty = Math.random() * (screenH + marginY * 2) - marginY;
+      const ty =
+        Math.random() * (effectiveCanvasHeight + marginY * 2) - marginY;
       state.current.targetX = tx;
       state.current.targetY = ty;
     }
@@ -103,7 +118,7 @@ const WanderItem = ({
 
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [size, ratio, screenW, screenH]);
+  }, [size, ratio, screenW, screenH, initialY, canvasHeight]);
 
   // 事件：逐张拖拽（桌面端）
   const onPointerDown = (e) => {
@@ -167,29 +182,70 @@ const WanderItem = ({
 };
 
 const DomWanderCanvas = ({ lab }) => {
-  const { width: screenW, isMobile } = useViewport();
-  const screenH = typeof window !== "undefined" ? window.innerHeight : 800;
+  const { width: screenW, height: screenH, isMobile } = useViewport();
   const zCounterRef = useRef(1);
 
-  const items = useMemo(
-    () =>
-      lab.map((it) => {
-        const { imgUrl, ratio } = getImageInfo(it.cover);
-        return { title: it.title, size: it.size, imgUrl, ratio };
-      }),
-    [lab]
-  );
+  const [itemsWithLayout, canvasHeight] = useMemo(() => {
+    if (!lab?.length) {
+      return [[], screenH];
+    }
+
+    const safeScreenW = screenW || 1;
+
+    const baseItems = lab.map((it, index) => {
+      const { imgUrl, ratio } = getImageInfo(it.cover);
+      const cols = colsFromSize(it.size);
+      const widthPx = (safeScreenW / 12) * cols;
+      const heightPx = ratio ? widthPx / ratio : widthPx;
+      return {
+        title: it.title,
+        size: it.size,
+        imgUrl,
+        ratio: ratio || 1,
+        widthPx,
+        heightPx,
+        index,
+      };
+    });
+
+    const count = baseItems.length;
+    const avgHeight =
+      count > 0
+        ? baseItems.reduce((sum, item) => sum + item.heightPx, 0) / count
+        : screenH * 0.2;
+    const baselineSpacing = avgHeight * 0.9;
+    const padding = avgHeight * 0.5;
+    const rawHeight = baselineSpacing * count + padding * 2;
+    const shrinkFactor = 0.79;
+    const computedHeight = Math.max(screenH, rawHeight * shrinkFactor);
+
+    const step = computedHeight / (count + 1);
+
+    const items = baseItems.map((item) => {
+      const centerY = step * (item.index + 1);
+      const jitter = item.heightPx * 0.15;
+      const normalized =
+        count > 1 ? ((item.index * 137) % 1000) / 1000 - 0.5 : 0;
+      const offset = normalized * jitter;
+      return {
+        ...item,
+        initialY: centerY - item.heightPx / 2 + offset,
+      };
+    });
+
+    return [items, computedHeight];
+  }, [lab, screenW, screenH]);
 
   return (
     <div
       style={{
         position: "relative",
         width: "100%",
-        height: "100%",
+        height: `${canvasHeight}px`,
         overflow: "hidden",
       }}
     >
-      {items.map((it, index) => {
+      {itemsWithLayout.map((it, index) => {
         const imgRef = useRef(null);
         useEffect(() => {
           if (imgRef.current) imgRef.current.src = it.imgUrl;
@@ -202,6 +258,8 @@ const DomWanderCanvas = ({ lab }) => {
             ratio={it.ratio}
             screenW={screenW}
             screenH={screenH}
+            initialY={it.initialY}
+            canvasHeight={canvasHeight}
             dragEnabled={!isMobile}
             bringToFront={(el) => {
               el.style.zIndex = String(zCounterRef.current++);
