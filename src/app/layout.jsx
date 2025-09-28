@@ -21,6 +21,9 @@ export const metadata = {
     "Function Lab is a design practice that creates systems and experiences across brand, print and digital.",
 };
 
+// revalidate every 4 hours
+export const revalidate = 3600 * 4;
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
