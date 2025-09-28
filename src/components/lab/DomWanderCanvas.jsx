@@ -189,14 +189,14 @@ const DomWanderCanvas = ({ lab }) => {
         overflow: "hidden",
       }}
     >
-      {items.map((it) => {
+      {items.map((it, index) => {
         const imgRef = useRef(null);
         useEffect(() => {
           if (imgRef.current) imgRef.current.src = it.imgUrl;
         }, [it.imgUrl]);
         return (
           <WanderItem
-            key={it.title}
+            key={index}
             coverRef={imgRef}
             size={it.size}
             ratio={it.ratio}

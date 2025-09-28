@@ -42,3 +42,7 @@ body {
 .footer-text {
   @apply text-[15px] leading-[18px] md:text-[24px] md:leading-[26px] lg:text-[56px] lg:leading-[60px];
 }
+
+.filter {
+  filter: blur(50px);
+}

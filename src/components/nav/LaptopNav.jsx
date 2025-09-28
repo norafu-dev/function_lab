@@ -57,7 +57,7 @@ export default function LaptopNav() {
             key={route.href}
             className={cn(
               "px-[15px] py-[5px] rounded-full hover:bg-white/15 hover:backdrop-blur-[50px] transition-all duration-300",
-              isActive(route.href) && "bg-white/15"
+              isActive(route.href) && "bg-white/15 backdrop-blur-[50px]"
             )}
           >
             <Link href={route.href}>{route.label}</Link>

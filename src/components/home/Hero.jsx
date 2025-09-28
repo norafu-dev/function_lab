@@ -51,13 +51,15 @@ const Hero = () => {
     <section className="hero relative">
       <figure className="flex h-screen w-full items-center justify-center">
         <video
-          src="/video/home.mp4"
           autoPlay
           muted
           loop
           playsInline
+          poster="/image/home.jpg"
           className="w-full h-full object-cover hero-video"
-        />
+        >
+          <source src="/video/home.mp4" />
+        </video>
       </figure>
 
       {HOME.info && (

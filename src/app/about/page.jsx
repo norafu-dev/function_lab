@@ -68,7 +68,7 @@ const AboutPage = async () => {
                   <li key={i} className="break-inside-avoid">
                     {c.name}
                     {c.industry ? (
-                      <span className="text-secondary pr-[5px]">
+                      <span className="text-secondary pl-[5px]">
                         {c.industry}
                       </span>
                     ) : null}
