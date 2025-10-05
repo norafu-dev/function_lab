@@ -16,6 +16,7 @@ const WanderItem = ({
   bringToFront,
   initialY,
   canvasHeight,
+  isMobile,
 }) => {
   const elRef = useRef(null);
   const state = useRef({
@@ -57,8 +58,9 @@ const WanderItem = ({
     }
 
     // 速度范围与最大转向速率（越小弧线越柔）
-    const speedMin = 14; // px/s
-    const speedMax = 24; // px/s
+    const slowFactor = isMobile ? 0.5 : 1;
+    const speedMin = 14 * slowFactor; // px/s
+    const speedMax = 24 * slowFactor; // px/s
     const maxTurnRate = 1.8; // rad/s
     const arriveDist = 80; // 接近该距离后切换新目标
 
@@ -269,6 +271,7 @@ const DomWanderCanvas = ({ lab }) => {
             bringToFront={(el) => {
               el.style.zIndex = String(zCounterRef.current++);
             }}
+            isMobile={isMobile}
           />
         );
       })}

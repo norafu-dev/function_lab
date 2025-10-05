@@ -1,7 +1,15 @@
 "use client";
+
 import React, { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const Description = ({ title, description, tags, year }) => {
+  const [isShow, setIsShow] = useState(false);
+  const pathname = usePathname();
+  useEffect(() => {
+    setIsShow(false);
+  }, [pathname]);
+
   return (
     <section className="w-full padding-x mt-[15px] mb-[60px] md:mt-[30px] md:mb-[200px]">
       <h1 className="text-md mb-[30px] md:mb-[90px]">{title}</h1>
@@ -18,8 +26,19 @@ const Description = ({ title, description, tags, year }) => {
           {year && <div className="">{year}</div>}
         </div>
 
-        <div className="col-span-9 text-base whitespace-pre-line">
+        <div className="hidden md:block col-span-9 text-base whitespace-pre-line">
           <ClampWithReadMore text={description} lines={4} />
+        </div>
+
+        <div className="md:hidden col-span-6 mt-[18px] DesContainer">
+          <button onClick={() => setIsShow(!isShow)}>
+            {!isShow && (
+              <span className="text-secondary cursor-pointer">
+                +Read about the project
+              </span>
+            )}
+          </button>
+          {isShow && <p>{description}</p>}
         </div>
       </div>
     </section>
@@ -140,4 +159,3 @@ function ClampWithReadMore({ text, lines = 4, color }) {
 }
 
 export default Description;
-export { ClampWithReadMore };

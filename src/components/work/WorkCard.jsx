@@ -9,8 +9,8 @@ import LinearBlur from "@/components/nav/LinearBlur";
 const WorkCard = ({ work, autoplay }) => {
   const { hero, slug, title } = work;
   return (
-    <div className="relative group aspect-[1440/810] overflow-hidden">
-      <Link href={`/work/${slug}`}>
+    <Link href={`/work/${slug}`}>
+      <div className="relative group aspect-[1440/810] overflow-hidden">
         {hero.type === "image" ? (
           <ImageCard src={hero} alt={title} />
         ) : autoplay ? (
@@ -18,7 +18,8 @@ const WorkCard = ({ work, autoplay }) => {
         ) : (
           <VideoCard src={hero} alt={title} />
         )}
-        <div className="absolute left-0 bottom-0 w-full h-[60px]">
+        {/* title for desktop */}
+        <div className="hidden lg:block absolute left-0 bottom-0 w-full h-[60px]">
           <div className="relative w-full h-full opacity-0 group-hover:opacity-100">
             <div className="absolute inset-0 z-0 pointer-events-none bg-[linear-gradient(to_top,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0)_100%)]" />
             <LinearBlur
@@ -39,8 +40,14 @@ const WorkCard = ({ work, autoplay }) => {
             </div>
           </div>
         </div>
-      </Link>
-    </div>
+      </div>
+      {/* title for mobile */}
+      <div className="block lg:hidden w-full p-[15px] md:p-[30px] text-sm">
+        <span className="text-secondary pr-[3px]">↑</span>
+
+        {title}
+      </div>
+    </Link>
   );
 };
 

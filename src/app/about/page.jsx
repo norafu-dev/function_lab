@@ -18,8 +18,8 @@ const AboutPage = async () => {
         {/* Hero */}
         {about?.title && <p className="">{about.title}</p>}
 
-        {/* Specialties */}
-        <section className="">
+        {/* Specialties for desktop */}
+        <section className="hidden md:block">
           <Title title="Specialties" />
           <div className="grid-layout">
             {about?.specialties?.map((sp, i) => (
@@ -35,6 +35,24 @@ const AboutPage = async () => {
           </div>
         </section>
 
+        {/* Specialties for mobile */}
+        <section className="block md:hidden">
+          <Title title="Specialties" />
+          {about?.specialties?.map((sp, i) => (
+            <div
+              key={i}
+              className="grid grid-cols-6 gap-x-[7px] pt-[6px] mb-[60px] border-t border-secondary"
+            >
+              <h2 className="text-md col-span-2">{sp.category}</h2>
+              <ul className="col-span-4 text-base text-secondary">
+                {sp.items?.map((it, idx) => (
+                  <li key={idx}>{it}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+
         {/* Manifesto */}
         <section>
           <Title title="Manifesto" />
@@ -47,7 +65,7 @@ const AboutPage = async () => {
                   i != 0 && "border-t border-secondary"
                 )}
               >
-                <h2 className="col-span-6 mb-[15px] md:mb-[35px] text-md">
+                <h2 className="col-span-6 mb-[26px] md:mb-[35px] text-md">
                   {m.title}
                 </h2>
                 <p className="col-span-6 text-base text-secondary whitespace-pre-line md:translate-y-[2px] lg:translate-y-[8px]">
@@ -76,13 +94,17 @@ const AboutPage = async () => {
                 ))}
               </ul>
             </div>
-            <div className="col-span-6">
-              <SubTitle title="Awards & Showcases" />
-              <ul className="text-base">
+            <div className="col-span-6 mt-[100px] md:mt-[0px]">
+              <div className="col-span-2">
+                <SubTitle title="Awards & Showcases" />
+              </div>
+              <ul className="text-base col-span-4">
                 {awards.map((a, i) => (
                   <li key={i}>
-                    <span className="text-secondary pr-[5px]">{a.title}</span>
-                    {a.year ? ` ${a.year}` : ""}
+                    <span className="pr-[5px]">{a.title}</span>
+                    <span className="text-secondary">
+                      {a.year ? ` ${a.year}` : ""}
+                    </span>
                   </li>
                 ))}
               </ul>

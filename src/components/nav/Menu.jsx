@@ -80,7 +80,7 @@ export default function Menu({ isOpen, onCloseComplete }) {
                 <Link
                   key={route.href}
                   href={route.href}
-                  className="group relative flex items-center"
+                  className="group relative flex items-center w-fit"
                   onClick={() => setIsClicked(true)}
                 >
                   <span className="absolute opacity-0 translate-x-[15px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
