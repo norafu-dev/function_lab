@@ -56,8 +56,8 @@ export default function Menu({ isOpen, onCloseComplete }) {
       {
         opacity: 1,
         x: 0,
-        duration: 0.5,
-        ease: "power2.in",
+        duration: 0.2,
+        ease: "power2.out",
         overwrite: "auto",
       }
     );
@@ -67,8 +67,8 @@ export default function Menu({ isOpen, onCloseComplete }) {
       { x: 0 },
       {
         x: 48,
-        duration: 0.5,
-        ease: "power2.in",
+        duration: 0.2,
+        ease: "power2.out",
         overwrite: "auto",
       }
     );
@@ -84,7 +84,7 @@ export default function Menu({ isOpen, onCloseComplete }) {
     gsap.to(arrow, {
       opacity: 0,
       x: 15,
-      duration: 0.3,
+      duration: 0.2,
       ease: "power2.inOut",
       overwrite: "auto",
       onComplete: () => {
@@ -94,7 +94,7 @@ export default function Menu({ isOpen, onCloseComplete }) {
 
     gsap.to(label, {
       x: 0,
-      duration: 0.3,
+      duration: 0.2,
       ease: "power2.inOut",
       overwrite: "auto",
       onComplete: () => {
@@ -115,7 +115,7 @@ export default function Menu({ isOpen, onCloseComplete }) {
 
     animateToActive(href);
 
-    resetTweenRef.current = gsap.delayedCall(0.9, () => {
+    resetTweenRef.current = gsap.delayedCall(1.8, () => {
       if (activeHrefRef.current !== href) return;
       animateToRest(href);
       setActiveHref(null);

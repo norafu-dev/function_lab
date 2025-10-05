@@ -9,6 +9,8 @@ import { renderStarEmphasis } from "@/lib/utils";
 const MobileHero = () => {
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger, SplitText);
+    // 刷新 ScrollTrigger 确保正确计算
+    ScrollTrigger.refresh();
 
     const tl = gsap.timeline({
       // 滚动触发的范围：顶部 0px 到 底部 300%
@@ -70,7 +72,7 @@ const MobileHero = () => {
           loop
           playsInline
           poster="/image/home.jpg"
-          className="mobile-hero-video h-full object-cover"
+          className="mobile-hero-video w-full object-cover"
         >
           <source src="/video/home.mp4" />
         </video>

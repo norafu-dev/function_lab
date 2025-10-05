@@ -44,7 +44,6 @@ const WorkCard = ({ work, autoplay }) => {
       {/* title for mobile */}
       <div className="block lg:hidden w-full p-[15px] md:p-[30px] text-sm">
         <span className="text-secondary pr-[3px]">↑</span>
-
         {title}
       </div>
     </Link>

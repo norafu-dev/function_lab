@@ -15,9 +15,9 @@ const Home = async () => {
   return (
     <main>
       <ResponsiveHero />
-      <section>
+      <section className="mt-[30px] lg:mt-[200px]">
         {works.map((work) => (
-          <div className="pb-[6px] mt-[30px] lg:mt-[200px]" key={work.title}>
+          <div className="lg:pb-[6px]" key={work.title}>
             <WorkCard work={work} autoplay={true} />
           </div>
         ))}
