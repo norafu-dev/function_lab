@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/cn";
@@ -13,6 +13,13 @@ export default function LaptopNav() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuMounted, setMenuMounted] = useState(false);
   const pathname = usePathname();
+  const closeTimeoutRef = useRef(null);
+
+  const clearCloseTimeout = () => {
+    if (!closeTimeoutRef.current) return;
+    clearTimeout(closeTimeoutRef.current);
+    closeTimeoutRef.current = null;
+  };
 
   useEffect(() => {
     setIsOpen(false);
@@ -20,16 +27,34 @@ export default function LaptopNav() {
 
   const toggleMenu = () => {
     if (!isOpen) {
+      clearCloseTimeout();
       setMenuMounted(true);
       setIsOpen(true);
-    } else {
-      setIsOpen(false);
+      return;
     }
+
+    setIsOpen(false);
   };
 
   const handleCloseComplete = () => {
-    setMenuMounted(false);
+    clearCloseTimeout();
+    closeTimeoutRef.current = setTimeout(() => {
+      setMenuMounted(false);
+      closeTimeoutRef.current = null;
+    }, 950);
   };
+
+  useEffect(() => {
+    if (!isOpen) return;
+    setMenuMounted(true);
+    clearCloseTimeout();
+  }, [isOpen]);
+
+  useEffect(() => {
+    return () => {
+      clearCloseTimeout();
+    };
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 w-full flex items-end justify-between h-[45px] px-[15px] text-[12px] leading-[20px] font-chivo z-100 select-none">

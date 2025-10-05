@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 
 gsap.registerPlugin(useGSAP);
@@ -31,12 +32,153 @@ export default function Menu({ isOpen, onCloseComplete }) {
   const containerRef = useRef(null);
   const hasOpenedRef = useRef(false);
   const [activeHref, setActiveHref] = useState(null);
+  const arrowRefs = useRef({});
+  const labelRefs = useRef({});
+  const resetTweenRef = useRef(null);
+  const activeHrefRef = useRef(activeHref);
+  const navigationTimeoutRef = useRef(null);
+  const router = useRouter();
 
   useEffect(() => {
-    if (!isOpen) {
-      setActiveHref(null);
+    activeHrefRef.current = activeHref;
+  }, [activeHref]);
+
+  const animateToActive = useCallback((href) => {
+    const arrow = arrowRefs.current[href];
+    const label = labelRefs.current[href];
+    if (!arrow || !label) return;
+
+    gsap.killTweensOf([arrow, label]);
+
+    gsap.fromTo(
+      arrow,
+      { opacity: 0, x: 15 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.5,
+        ease: "power2.in",
+        overwrite: "auto",
+      }
+    );
+
+    gsap.fromTo(
+      label,
+      { x: 0 },
+      {
+        x: 48,
+        duration: 0.5,
+        ease: "power2.in",
+        overwrite: "auto",
+      }
+    );
+  }, []);
+
+  const animateToRest = useCallback((href) => {
+    const arrow = arrowRefs.current[href];
+    const label = labelRefs.current[href];
+    if (!arrow || !label) return;
+
+    gsap.killTweensOf([arrow, label]);
+
+    gsap.to(arrow, {
+      opacity: 0,
+      x: 15,
+      duration: 0.3,
+      ease: "power2.inOut",
+      overwrite: "auto",
+      onComplete: () => {
+        gsap.set(arrow, { clearProps: "all" });
+      },
+    });
+
+    gsap.to(label, {
+      x: 0,
+      duration: 0.3,
+      ease: "power2.inOut",
+      overwrite: "auto",
+      onComplete: () => {
+        gsap.set(label, { clearProps: "all" });
+      },
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!activeHref) return;
+
+    const href = activeHref;
+
+    if (resetTweenRef.current) {
+      resetTweenRef.current.kill();
+      resetTweenRef.current = null;
     }
+
+    animateToActive(href);
+
+    resetTweenRef.current = gsap.delayedCall(0.9, () => {
+      if (activeHrefRef.current !== href) return;
+      animateToRest(href);
+      setActiveHref(null);
+      resetTweenRef.current = null;
+    });
+  }, [activeHref, animateToActive, animateToRest]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    if (resetTweenRef.current) {
+      resetTweenRef.current.kill();
+      resetTweenRef.current = null;
+    }
+
+    Object.values(arrowRefs.current).forEach((arrow) => {
+      gsap.killTweensOf(arrow);
+      gsap.set(arrow, { clearProps: "all" });
+    });
+
+    Object.values(labelRefs.current).forEach((label) => {
+      gsap.killTweensOf(label);
+      gsap.set(label, { clearProps: "all" });
+    });
+
+    setActiveHref(null);
   }, [isOpen]);
+
+  useEffect(() => {
+    return () => {
+      if (resetTweenRef.current) {
+        resetTweenRef.current.kill();
+        resetTweenRef.current = null;
+      }
+
+      if (navigationTimeoutRef.current) {
+        clearTimeout(navigationTimeoutRef.current);
+        navigationTimeoutRef.current = null;
+      }
+    };
+  }, []);
+
+  const getArrowRef = useCallback(
+    (href) => (el) => {
+      if (el) {
+        arrowRefs.current[href] = el;
+      } else {
+        delete arrowRefs.current[href];
+      }
+    },
+    []
+  );
+
+  const getLabelRef = useCallback(
+    (href) => (el) => {
+      if (el) {
+        labelRefs.current[href] = el;
+      } else {
+        delete labelRefs.current[href];
+      }
+    },
+    []
+  );
 
   useGSAP(
     () => {
@@ -93,9 +235,34 @@ export default function Menu({ isOpen, onCloseComplete }) {
                   key={route.href}
                   href={route.href}
                   className="group relative flex items-center w-fit"
-                  onClick={() => setActiveHref(route.href)}
+                  onClick={(event) => {
+                    if (
+                      event.metaKey ||
+                      event.ctrlKey ||
+                      event.shiftKey ||
+                      event.altKey ||
+                      event.button !== 0
+                    ) {
+                      return;
+                    }
+
+                    event.preventDefault();
+
+                    if (navigationTimeoutRef.current) {
+                      clearTimeout(navigationTimeoutRef.current);
+                      navigationTimeoutRef.current = null;
+                    }
+
+                    setActiveHref(route.href);
+
+                    navigationTimeoutRef.current = setTimeout(() => {
+                      router.push(route.href);
+                      navigationTimeoutRef.current = null;
+                    }, 550);
+                  }}
                 >
                   <span
+                    ref={getArrowRef(route.href)}
                     className={cn(
                       "absolute opacity-0 translate-x-[15px] transition-all duration-300 md:group-hover:opacity-100 md:group-hover:translate-x-0",
                       isActive && "opacity-100 translate-x-0"
@@ -104,6 +271,7 @@ export default function Menu({ isOpen, onCloseComplete }) {
                     →
                   </span>
                   <span
+                    ref={getLabelRef(route.href)}
                     className={cn(
                       "transition-transform duration-300 md:group-hover:translate-x-[48px]",
                       isActive && "translate-x-[48px]"
