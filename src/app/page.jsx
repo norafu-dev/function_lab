@@ -8,6 +8,8 @@ import { Title } from "@/app/about/page";
 import Redirect from "@/components/Redirect";
 import WorkCard from "@/components/work/WorkCard";
 import Hero from "@/components/home/Hero";
+import MobileHero from "@/components/home/MobileHero";
+import TabletHero from "@/components/home/TabletHero";
 
 const Home = async () => {
   const news = await client.fetch(NEWS_QUERY_IN_HOMEPAGE);
@@ -15,9 +17,14 @@ const Home = async () => {
   return (
     <main>
       <Hero />
-      <section className="mt-[30px] lg:mt-[200px]">
+      <TabletHero />
+      <MobileHero />
+      <section>
         {works.map((work) => (
-          <div className="pb-[6px]" key={work.title}>
+          <div
+            className="pb-[6px] mt-[30px] md:mt-0 lg:mt-[200px]"
+            key={work.title}
+          >
             <WorkCard work={work} autoplay={true} />
           </div>
         ))}
