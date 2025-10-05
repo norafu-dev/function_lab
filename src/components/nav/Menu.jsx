@@ -70,10 +70,14 @@ export default function Menu({ isOpen, onCloseComplete }) {
   return (
     <div ref={containerRef} className="fixed inset-0 z-[10]">
       <div
-        className="menu-overlay h-full w-full"
-        style={{ clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)" }}
+        className="menu-overlay h-full w-full bg-black/12"
+        style={{
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+          backdropFilter: "blur(50px)",
+          WebkitBackdropFilter: "blur(50px)",
+        }}
       >
-        <div className="container absolute top-0 left-0 flex flex-col justify-center w-screen h-screen pl-[15px] bg-black/12 backdrop-blur-[50px] tracking-[-0.01em] font-twk">
+        <div className="container absolute top-0 left-0 flex flex-col justify-center w-screen h-screen pl-[15px] tracking-[-0.01em] font-twk">
           <div className="flex flex-col text-[56px] leading-[60px]">
             {ROUTES.map((route) => {
               return (
