@@ -7,24 +7,17 @@ import NewsList from "@/components/news/NewsList";
 import { Title } from "@/app/about/page";
 import Redirect from "@/components/Redirect";
 import WorkCard from "@/components/work/WorkCard";
-import Hero from "@/components/home/Hero";
-import MobileHero from "@/components/home/MobileHero";
-import TabletHero from "@/components/home/TabletHero";
+import ResponsiveHero from "@/components/home/ResponsiveHero";
 
 const Home = async () => {
   const news = await client.fetch(NEWS_QUERY_IN_HOMEPAGE);
   const works = await client.fetch(WORKS_QUERY_IN_HOMEPAGE);
   return (
     <main>
-      <Hero />
-      <TabletHero />
-      <MobileHero />
+      <ResponsiveHero />
       <section>
         {works.map((work) => (
-          <div
-            className="pb-[6px] mt-[30px] md:mt-0 lg:mt-[200px]"
-            key={work.title}
-          >
+          <div className="pb-[6px] mt-[30px] lg:mt-[200px]" key={work.title}>
             <WorkCard work={work} autoplay={true} />
           </div>
         ))}

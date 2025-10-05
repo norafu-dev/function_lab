@@ -41,18 +41,18 @@ const TabletHero = () => {
       .fromTo(
         ".tablet-hero-info",
         { y: "100vh" },
-        { y: "869px", ease: "power1.inOut", duration: 1.2 },
+        { y: "80vh", ease: "power1.inOut", duration: 1.2 },
         "<0.1"
+      )
+      .to(
+        ".tablet-hero-video",
+        { yPercent: -50, duration: 1, ease: "power1.inOut" },
+        "<0.5"
       )
       .to(
         split.words,
         { opacity: 1, stagger: 0.05, ease: "power1.out", duration: 0.7 },
         "<"
-      )
-      .to(
-        ".tablet-hero-video",
-        { yPercent: -100, duration: 0.5, ease: "power1.inOut" },
-        "<0.5"
       );
 
     return () => {

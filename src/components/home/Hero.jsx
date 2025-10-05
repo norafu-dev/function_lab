@@ -33,7 +33,7 @@ const Hero = () => {
       .fromTo(
         ".hero-info",
         { y: "110vh" },
-        { y: "392px", ease: "power1.inOut", duration: 1 },
+        { y: "80vh", ease: "power1.inOut", duration: 1 },
         "<15%"
       )
       .to(
@@ -44,6 +44,7 @@ const Hero = () => {
 
     return () => {
       split.revert();
+      tl.kill();
     };
   });
 

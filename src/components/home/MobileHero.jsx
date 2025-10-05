@@ -41,7 +41,7 @@ const MobileHero = () => {
       .fromTo(
         ".mobile-hero-info",
         { y: "100vh" },
-        { y: "554px", ease: "power1.inOut", duration: 1.2 },
+        { y: "80vh", ease: "power1.inOut", duration: 1.2 },
         "<0.1"
       )
       .to(
@@ -51,7 +51,7 @@ const MobileHero = () => {
       )
       .to(
         ".mobile-hero-video",
-        { yPercent: -70, duration: 0.5, ease: "power1.inOut" },
+        { yPercent: -50, duration: 0.5, ease: "power1.inOut" },
         "<0.5"
       );
 
