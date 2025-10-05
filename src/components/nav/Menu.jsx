@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 
 gsap.registerPlugin(useGSAP);
@@ -30,7 +30,13 @@ const ROUTES = [
 export default function Menu({ isOpen, onCloseComplete }) {
   const containerRef = useRef(null);
   const hasOpenedRef = useRef(false);
-  const [isClicked, setIsClicked] = useState(false);
+  const [activeHref, setActiveHref] = useState(null);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setActiveHref(null);
+    }
+  }, [isOpen]);
 
   useGSAP(
     () => {
@@ -80,20 +86,27 @@ export default function Menu({ isOpen, onCloseComplete }) {
         <div className="container absolute top-0 left-0 flex flex-col justify-center w-screen h-screen pl-[15px] tracking-[-0.01em] font-twk">
           <div className="flex flex-col text-[56px] leading-[60px]">
             {ROUTES.map((route) => {
+              const isActive = activeHref === route.href;
+
               return (
                 <Link
                   key={route.href}
                   href={route.href}
                   className="group relative flex items-center w-fit"
-                  onClick={() => setIsClicked(true)}
+                  onClick={() => setActiveHref(route.href)}
                 >
-                  <span className="absolute opacity-0 translate-x-[15px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
+                  <span
+                    className={cn(
+                      "absolute opacity-0 translate-x-[15px] transition-all duration-300 md:group-hover:opacity-100 md:group-hover:translate-x-0",
+                      isActive && "opacity-100 translate-x-0"
+                    )}
+                  >
                     →
                   </span>
                   <span
                     className={cn(
-                      "transition-transform duration-300 group-hover:translate-x-[48px]",
-                      isClicked && "translate-x-[0px]"
+                      "transition-transform duration-300 md:group-hover:translate-x-[48px]",
+                      isActive && "translate-x-[48px]"
                     )}
                   >
                     {route.label}
