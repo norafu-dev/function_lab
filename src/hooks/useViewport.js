@@ -19,7 +19,7 @@ export default function useViewport() {
     onResize();
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
-  }, []);
+  }, [height]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
