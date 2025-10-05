@@ -103,7 +103,7 @@ const AboutPage = async () => {
                   <li key={i}>
                     <span className="pr-[5px]">{a.title}</span>
                     <span className="text-secondary">
-                      {a.year ? ` ${a.year}` : ""}
+                      {a.year ? a.year : ""}
                     </span>
                   </li>
                 ))}

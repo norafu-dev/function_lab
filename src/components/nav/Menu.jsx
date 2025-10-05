@@ -50,28 +50,32 @@ export default function Menu({ isOpen, onCloseComplete }) {
 
     gsap.killTweensOf([arrow, label]);
 
-    gsap.fromTo(
+    // 先设置箭头初始状态
+    gsap.set(arrow, { opacity: 0, x: 15 });
+
+    // 创建时间线：先移动，再淡入
+    const tl = gsap.timeline();
+
+    tl.to(arrow, {
+      x: 0,
+      duration: 0.2,
+      ease: "power2.out",
+    }).to(
       arrow,
-      { opacity: 0, x: 15 },
       {
         opacity: 1,
-        x: 0,
-        duration: 0.2,
+        duration: 0.15,
         ease: "power2.out",
-        overwrite: "auto",
-      }
-    );
+      },
+      "-=0.05"
+    ); // 稍微提前一点开始淡入
 
-    gsap.fromTo(
-      label,
-      { x: 0 },
-      {
-        x: 48,
-        duration: 0.2,
-        ease: "power2.out",
-        overwrite: "auto",
-      }
-    );
+    gsap.to(label, {
+      x: 48,
+      duration: 0.2,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
   }, []);
 
   const animateToRest = useCallback((href) => {
