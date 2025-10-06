@@ -105,6 +105,10 @@ const NEXT_WORK_BY_WORK_PAGE_ORDER = defineQuery(`
   *[_type == "work" && workPageOrder == $workPageOrder][0]{ "slug": slug.current }
 `);
 
+const FIRST_WORK_BY_WORK_PAGE_ORDER = defineQuery(`
+  *[_type == "work"] | order(workPageOrder asc)[0]{ "slug": slug.current }
+`);
+
 const ABOUT_QUERY = defineQuery(
   `
 *[_type == "about"][0]{
@@ -162,5 +166,6 @@ export {
   WORK_QUERY_BY_SLUG,
   WORKS_QUERY_IN_HOMEPAGE,
   NEXT_WORK_BY_WORK_PAGE_ORDER,
+  FIRST_WORK_BY_WORK_PAGE_ORDER,
   NEWS_QUERY_IN_HOMEPAGE,
 };
