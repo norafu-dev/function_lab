@@ -6,7 +6,7 @@ import { SplitText } from "gsap/SplitText";
 import { HOME } from "@/lib/data";
 import { renderStarEmphasis } from "@/lib/utils";
 
-const MobileHero = () => {
+const MobileHero = ({ src, poster }) => {
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger, SplitText);
     // 刷新 ScrollTrigger 确保正确计算
@@ -71,10 +71,10 @@ const MobileHero = () => {
           muted
           loop
           playsInline
-          poster="/image/home.jpg"
+          poster={poster}
           className="mobile-hero-video w-full object-cover"
         >
-          <source src="/video/home.mp4" />
+          <source src={src} />
         </video>
       </div>
 

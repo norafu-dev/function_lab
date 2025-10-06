@@ -1,5 +1,6 @@
 import { client } from "@/sanity/lib/client";
 import {
+  HOMEPAGE_QUERY,
   NEWS_QUERY_IN_HOMEPAGE,
   WORKS_QUERY_IN_HOMEPAGE,
 } from "@/sanity/lib/queries";
@@ -10,11 +11,12 @@ import WorkCard from "@/components/work/WorkCard";
 import ResponsiveHero from "@/components/home/ResponsiveHero";
 
 const Home = async () => {
+  const homePageVideo = await client.fetch(HOMEPAGE_QUERY);
   const news = await client.fetch(NEWS_QUERY_IN_HOMEPAGE);
   const works = await client.fetch(WORKS_QUERY_IN_HOMEPAGE);
   return (
     <main>
-      <ResponsiveHero />
+      <ResponsiveHero video={homePageVideo} />
       <section className="pt-[30px] md:pt-[200px]">
         {works.map((work) => (
           <div className="lg:pb-[6px]" key={work.title}>

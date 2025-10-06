@@ -2,7 +2,8 @@ import { defineQuery } from "next-sanity";
 
 const HOMEPAGE_QUERY = defineQuery(
   `*[_type == "home"]{
-    video
+    "file": video.file.asset._ref,
+    "thumbnail": video.thumbnail.asset._ref
   }[0]`
 );
 

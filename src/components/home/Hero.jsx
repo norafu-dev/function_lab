@@ -6,7 +6,7 @@ import { SplitText } from "gsap/SplitText";
 import { HOME } from "@/lib/data";
 import { renderStarEmphasis } from "@/lib/utils";
 
-const Hero = () => {
+const Hero = ({ src, poster }) => {
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -56,10 +56,10 @@ const Hero = () => {
           muted
           loop
           playsInline
-          poster="/image/home.jpg"
+          poster={poster}
           className="w-full h-full object-cover hero-video"
         >
-          <source src="/video/home.mp4" />
+          <source src={src} />
         </video>
       </figure>
 

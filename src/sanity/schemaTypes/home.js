@@ -14,24 +14,17 @@ const home = {
       type: "object",
       fields: [
         {
-          name: "url",
-          title: "Url",
-          type: "url",
+          name: "file",
+          title: "File",
+          type: "file",
+          options: {
+            accept: ["video/*"],
+          },
         },
         {
-          name: "autoplay",
-          title: "Autoplay",
-          type: "boolean",
-        },
-        {
-          name: "background",
-          title: "Background",
-          type: "boolean",
-        },
-        {
-          name: "loop",
-          title: "Loop",
-          type: "boolean",
+          name: "thumbnail",
+          title: "Thumbnail",
+          type: "image",
         },
       ],
     },
