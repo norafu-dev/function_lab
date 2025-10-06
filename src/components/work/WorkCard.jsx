@@ -6,17 +6,35 @@ import VideoCard from "./VideoCard";
 import AutoPlayVideoCard from "./AutoPlayVideoCard";
 import LinearBlur from "@/components/nav/LinearBlur";
 
-const WorkCard = ({ work, autoplay }) => {
+const WorkCard = ({ work, autoplay, scale }) => {
   const { hero, slug, title } = work;
   return (
     <Link href={`/work/${slug}`}>
       <div className="relative group aspect-[1440/810] overflow-hidden">
         {hero.type === "image" ? (
-          <ImageCard src={hero} alt={title} />
+          <ImageCard
+            src={hero}
+            alt={title}
+            className={
+              scale ? "hover:scale-106 transition-all duration-300" : ""
+            }
+          />
         ) : autoplay ? (
-          <AutoPlayVideoCard src={hero} alt={title} />
+          <AutoPlayVideoCard
+            src={hero}
+            alt={title}
+            className={
+              scale ? "hover:scale-106 transition-all duration-300" : ""
+            }
+          />
         ) : (
-          <VideoCard src={hero} alt={title} />
+          <VideoCard
+            src={hero}
+            alt={title}
+            className={
+              scale ? "hover:scale-106 transition-all duration-300" : ""
+            }
+          />
         )}
         {/* title for desktop */}
         <div className="hidden lg:block absolute left-0 bottom-0 w-full h-[60px]">

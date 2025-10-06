@@ -25,7 +25,12 @@ const WorkList = ({ works }) => {
     <div className="lg:grid lg:grid-cols-2 gap-[6px] mb-[200px]">
       {!categoryParam
         ? validWorks.map((work) => (
-            <WorkCard key={work.title} work={work} autoplay={true} />
+            <WorkCard
+              key={work.title}
+              work={work}
+              autoplay={true}
+              scale={true}
+            />
           ))
         : validWorks
             .filter(
@@ -36,7 +41,12 @@ const WorkList = ({ works }) => {
                   .includes(categoryParam)
             )
             .map((work) => (
-              <WorkCard key={work.title} work={work} autoplay={true} />
+              <WorkCard
+                key={work.title}
+                work={work}
+                autoplay={true}
+                scale={true}
+              />
             ))}
     </div>
   );

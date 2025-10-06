@@ -10,7 +10,7 @@ const LabPage = async () => {
   return (
     <div>
       {LAB.info && <Info info={LAB.info} />}
-      <div className="mt-[60px] md:mt-[200px] mb-[100px] md:mb-[200px] ">
+      <div className="mt-[40px] lg:mt-[70px] mb-[40px] lg:mb-[70px]">
         <DomWanderCanvas lab={lab} />
       </div>
       <div className="w-full padding-x mb-[15px] md:mb-[30px] lg:mb-[90px]">

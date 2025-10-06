@@ -11,7 +11,7 @@ const Footer = () => {
     <footer className="w-full padding-x footer-text">
       <div className="grid-layout mb-[200px] md:mb-[300px] lg:mb-[400px] pt-[6px] md:pt-[10px] lg:pt-[20px] border-t border-secondary">
         <div className="col-span-3 md:col-span-6">Get in touch → </div>
-        <div className="col-start-* underline underline-offset-2 md:underline-offset-7">
+        <div className="col-start-* underline underline-offset-2 md:underline-offset-3 lg:underline-offset-7">
           <Link href="mailto:hi@functionlab.design">hi@functionlab.design</Link>
         </div>
       </div>
@@ -21,7 +21,7 @@ const Footer = () => {
         <div>
           <Link
             href="https://www.instagram.com/function_lab_design/"
-            className="hidden md:block underline-offset"
+            className="hidden md:block underline underline-offset-2"
           >
             Instagram
           </Link>
@@ -40,13 +40,13 @@ const Footer = () => {
         <div className="col-start-* col-span-6 lg:col-span-3 flex justify-between">
           <Link
             href="https://www.instagram.com/function_lab_design/"
-            className="hidden md:block underline-offset"
+            className="hidden md:block underline md:underline-offset-3"
           >
             Instagram
           </Link>
           <Link
             href="mailto:hi@functionlab.design"
-            className="underline-offset"
+            className="underline md:underline-offset-3"
           >
             Get in touch →
           </Link>
