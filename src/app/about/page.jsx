@@ -56,7 +56,7 @@ const AboutPage = async () => {
               <h2 className="about-animate-subtext text-md col-span-2 py-[6px]">
                 {sp.category}
               </h2>
-              <ul className="col-span-4 text-base text-secondary about-animate-fade">
+              <ul className="col-span-4 text-base text-secondary about-animate-fade pt-[6px] md:pt-0">
                 {sp.items?.map((it, idx) => (
                   <li key={idx}>{it}</li>
                 ))}

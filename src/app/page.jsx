@@ -19,7 +19,7 @@ const Home = async () => {
   return (
     <main>
       <ResponsiveHero video={homePageVideo} info={info} />
-      <section className="pt-[30px] md:pt-[200px]">
+      <section className="pt-[50px] md:pt-[200px]">
         {works.map((work) => (
           <div className="lg:pb-[6px]" key={work.title}>
             <WorkCard work={work} autoplay={true} scale={true} />

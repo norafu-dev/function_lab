@@ -190,17 +190,14 @@ const WanderItem = ({
 
 const DomWanderCanvas = ({ lab }) => {
   const { width: screenW, height: screenH, isMobile } = useViewport();
-  const initialScreenHRef = useRef(screenH || 800);
-  if (!initialScreenHRef.current && screenH) {
-    initialScreenHRef.current = screenH;
-  }
-  const baseScreenH = initialScreenHRef.current || screenH || 800;
+  const MOBILE_BASE_HEIGHT = 812; // 近似常见手机视窗高度（iPhone 11）
   const zCounterRef = useRef(1);
 
   const [itemsWithLayout, canvasHeight] = useMemo(() => {
+    const safeScreenH = screenH || MOBILE_BASE_HEIGHT;
+
     if (!lab?.length) {
-      // 手机端的高度固定为初始屏幕高度 * 2
-      return [[], isMobile ? baseScreenH * 2 : screenH];
+      return [[], isMobile ? MOBILE_BASE_HEIGHT * 1.8 : safeScreenH];
     }
 
     const safeScreenW = screenW || 1;
@@ -225,13 +222,13 @@ const DomWanderCanvas = ({ lab }) => {
     const avgHeight =
       count > 0
         ? baseItems.reduce((sum, item) => sum + item.heightPx, 0) / count
-        : screenH * 0.2;
+        : safeScreenH * 0.2;
     const baselineSpacing = avgHeight * 0.9;
     const padding = avgHeight * 0.5;
     const rawHeight = baselineSpacing * count + padding * 2;
     const shrinkFactor = 0.79;
-    const desktopHeight = Math.max(screenH, rawHeight * shrinkFactor);
-    const mobileHeight = baseScreenH * 2;
+    const desktopHeight = Math.max(safeScreenH, rawHeight * shrinkFactor);
+    const mobileHeight = MOBILE_BASE_HEIGHT * 1.8;
     const computedHeight = isMobile ? mobileHeight : desktopHeight;
 
     const step = computedHeight / (count + 1);
