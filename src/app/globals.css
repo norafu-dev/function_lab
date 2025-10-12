@@ -43,6 +43,15 @@ body {
   }
 }
 
+.redirect-link:hover .redirect-arrow {
+  transform: translateX(8px);
+  color: var(--color-secondary);
+}
+
+.redirect-link:hover .redirect-text {
+  color: var(--color-secondary);
+}
+
 .footer-text {
   @apply text-[15px] leading-[18px] md:text-[24px] md:leading-[26px] lg:text-[56px] lg:leading-[60px];
 }

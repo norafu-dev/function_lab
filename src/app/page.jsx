@@ -10,7 +10,6 @@ import { Title } from "@/app/about/page";
 import Redirect from "@/components/Redirect";
 import WorkCard from "@/components/work/WorkCard";
 import ResponsiveHero from "@/components/home/ResponsiveHero";
-import Info from "@/components/Info";
 
 const Home = async () => {
   const homePageVideo = await client.fetch(HOMEPAGE_QUERY);
@@ -20,7 +19,6 @@ const Home = async () => {
   return (
     <main>
       <ResponsiveHero video={homePageVideo} info={info} />
-      {info?.content && <Info info={info.content} />}
       <section className="pt-[30px] md:pt-[200px]">
         {works.map((work) => (
           <div className="lg:pb-[6px]" key={work.title}>

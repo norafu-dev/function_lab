@@ -6,11 +6,18 @@ const Redirect = ({ text, href, className }) => {
     <Link
       href={href}
       className={cn(
-        "block w-full text-[15px] leading-[18px] md:text-[24px] md:leading-[26px] lg:text-[56px] lg:leading-[60px] pt-[6px] md:pt-[10px] lg:pt-[20px] border-t border-secondary",
+        "redirect-link block w-full text-[15px] leading-[18px] md:text-[24px] md:leading-[26px] lg:text-[56px] lg:leading-[60px] pt-[6px] md:pt-[10px] lg:pt-[20px] border-t border-secondary transition-colors duration-300",
         className
       )}
     >
-      {text}
+      <span className="inline-flex items-center gap-2">
+        <span className="redirect-text transition-colors duration-300">
+          {text.replace("→", "")}
+        </span>
+        <span className="redirect-arrow inline-flex transition-transform transition-colors duration-300 translate-x-0">
+          →
+        </span>
+      </span>
     </Link>
   );
 };
