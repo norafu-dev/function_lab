@@ -229,7 +229,7 @@ export default function Menu({ isOpen, onCloseComplete }) {
           WebkitBackdropFilter: "blur(50px)",
         }}
       >
-        <div className="container absolute top-0 left-0 flex flex-col justify-center w-screen h-screen pl-[15px] tracking-[-0.01em] font-twk">
+        <div className="container absolute top-0 left-0 flex flex-col justify-center w-screen min-h-[100dvh] pl-[15px] pb-[env(safe-area-inset-bottom)] tracking-[-0.01em] font-twk">
           <div className="flex flex-col text-[56px] leading-[60px]">
             {ROUTES.map((route) => {
               const isActive = activeHref === route.href;

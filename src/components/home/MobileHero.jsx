@@ -64,7 +64,7 @@ const MobileHero = ({ src, poster }) => {
   });
 
   return (
-    <section className="mobile-hero md:hidden relative flex h-screen items-center justify-center overflow-hidden">
+    <section className="mobile-hero md:hidden relative flex min-h-[100dvh] items-center justify-center overflow-hidden pb-[env(safe-area-inset-bottom)]">
       <div className="mobile-hero-frame">
         <video
           autoPlay
