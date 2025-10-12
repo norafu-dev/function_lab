@@ -32,6 +32,7 @@ const WanderItem = ({
     baseX: 0,
     baseY: 0,
   });
+  const initializedRef = useRef(false);
 
   useEffect(() => {
     const el = elRef.current;
@@ -45,16 +46,22 @@ const WanderItem = ({
     const effectiveCanvasHeight = canvasHeight ?? screenH;
     const minY = 0;
     const maxY = Math.max(0, effectiveCanvasHeight - heightPx);
-    state.current.minY = minY;
-    state.current.maxY = maxY;
-    state.current.heightPx = heightPx;
-    state.current.x = Math.random() * (screenW + marginX * 2) - marginX;
-    if (typeof initialY === "number") {
-      const clampedY = Math.min(Math.max(initialY, minY), maxY);
-      state.current.y = clampedY;
+    const s = state.current;
+    s.minY = minY;
+    s.maxY = maxY;
+    s.heightPx = heightPx;
+
+    if (!initializedRef.current) {
+      s.x = Math.random() * (screenW + marginX * 2) - marginX;
+      if (typeof initialY === "number") {
+        const clampedY = Math.min(Math.max(initialY, minY), maxY);
+        s.y = clampedY;
+      } else {
+        s.y = maxY > minY ? minY + Math.random() * (maxY - minY) : minY;
+      }
     } else {
-      state.current.y =
-        maxY > minY ? minY + Math.random() * (maxY - minY) : minY;
+      s.x = Math.max(Math.min(s.x, screenW + marginX), -marginX);
+      s.y = Math.min(Math.max(s.y, minY), maxY);
     }
 
     // 速度范围与最大转向速率（越小弧线越柔）
@@ -68,13 +75,22 @@ const WanderItem = ({
       // 目标点可在视窗外一定边距，路径更自然
       const tx = Math.random() * (screenW + marginX * 2) - marginX;
       const ty = maxY > minY ? minY + Math.random() * (maxY - minY) : minY;
-      state.current.targetX = tx;
-      state.current.targetY = ty;
+      s.targetX = tx;
+      s.targetY = ty;
     }
 
     // 初始化速度与目标
-    state.current.speed = speedMin + Math.random() * (speedMax - speedMin);
-    pickTarget();
+    if (!initializedRef.current) {
+      s.speed = speedMin + Math.random() * (speedMax - speedMin);
+      pickTarget();
+      initializedRef.current = true;
+    } else {
+      if (s.speed < speedMin) s.speed = speedMin;
+      if (s.speed > speedMax) s.speed = speedMax;
+      if (s.targetY < minY || s.targetY > maxY) {
+        s.targetY = Math.min(Math.max(s.targetY, minY), maxY);
+      }
+    }
 
     let raf = 0;
     let last = performance.now();

@@ -78,7 +78,7 @@ const work = {
     },
     {
       name: "hero",
-      title: "Hero",
+      title: "Header",
       type: "object",
       fields: [
         {
