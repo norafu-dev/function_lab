@@ -14,16 +14,8 @@ const WorkPage = async ({ params }) => {
   const { slug } = await params;
   const work = await client.fetch(WORK_QUERY_BY_SLUG, { slug });
 
-  const {
-    title,
-    cover,
-    description,
-    tags,
-    year,
-    credits,
-    rows,
-    workPageOrder,
-  } = work;
+  const { title, hero, description, tags, year, credits, rows, workPageOrder } =
+    work;
 
   const validRows = Array.isArray(rows)
     ? rows.filter((r) => Array.isArray(r) && r.length > 0 && r.length <= 2)
@@ -41,7 +33,7 @@ const WorkPage = async ({ params }) => {
 
   return (
     <div>
-      <Hero cover={cover} title={title} />
+      <Hero cover={hero} title={title} />
       <Description
         title={title}
         description={description}

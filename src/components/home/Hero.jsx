@@ -3,10 +3,9 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import { HOME } from "@/lib/data";
 import { renderStarEmphasis } from "@/lib/utils";
 
-const Hero = ({ src, poster }) => {
+const Hero = ({ src, poster, info }) => {
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -63,9 +62,9 @@ const Hero = ({ src, poster }) => {
         </video>
       </figure>
 
-      {HOME.info && (
+      {info && (
         <p className="hero-info absolute left-0 right-0 top-0 mt-0 translate-y-[110vh] text-md padding-x">
-          {renderStarEmphasis(HOME.info)}
+          {renderStarEmphasis(info)}
         </p>
       )}
     </section>

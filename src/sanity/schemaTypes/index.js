@@ -3,7 +3,8 @@ import work from "./work";
 import lab from "./lab";
 import news from "./news";
 import home from "./home";
+import info from "./info";
 
 export const schema = {
-  types: [home, about, work, lab, news],
+  types: [home, about, work, lab, news, info],
 };

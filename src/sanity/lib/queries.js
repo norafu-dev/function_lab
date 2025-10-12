@@ -13,14 +13,14 @@ const WORKS_QUERY = defineQuery(`
       "slug": slug.current,
       "category": coalesce(category, []),
       "hero": select(
-        defined(hero.video.file.asset) => {
+        defined(cover.video.file.asset) => {
           "type": "video",
-          "file": hero.video.file.asset._ref,
-          "thumbnail": hero.video.thumbnail.asset._ref
+          "file": cover.video.file.asset._ref,
+          "thumbnail": cover.video.thumbnail.asset._ref
         },
-        defined(hero.image.asset) => {
+        defined(cover.image.asset) => {
           "type": "image",
-          "image": hero.image.asset._ref
+          "image": cover.image.asset._ref
         }
       )
     }
@@ -52,18 +52,6 @@ const WORK_QUERY_BY_SLUG = defineQuery(`
     description,
     credits,
     workPageOrder,
-    "cover": select(
-      defined(cover.video.file.asset) => {
-        "type": "video",
-        "file": cover.video.file.asset._ref,
-        "thumbnail": cover.video.thumbnail.asset._ref
-      },
-      defined(cover.image.asset) => {
-        "type": "image",
-        "image": cover.image.asset._ref
-      }
-    ),
-
     "hero": select(
       defined(hero.video.file.asset) => {
         "type": "video",
@@ -157,6 +145,14 @@ const LAB_QUERY = defineQuery(`
   }
   `);
 
+const INFO_QUERY_BY_KEY = defineQuery(
+  `*[_type == "info" && key == $key][0]{
+    content,
+    mobileContent,
+    secondaryContent
+  }`
+);
+
 export {
   HOMEPAGE_QUERY,
   WORKS_QUERY,
@@ -168,4 +164,5 @@ export {
   NEXT_WORK_BY_WORK_PAGE_ORDER,
   FIRST_WORK_BY_WORK_PAGE_ORDER,
   NEWS_QUERY_IN_HOMEPAGE,
+  INFO_QUERY_BY_KEY,
 };

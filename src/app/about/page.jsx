@@ -1,19 +1,19 @@
 import { client } from "@/sanity/lib/client";
-import { ABOUT_QUERY } from "@/sanity/lib/queries";
-import { ABOUT } from "@/lib/data";
+import { ABOUT_QUERY, INFO_QUERY_BY_KEY } from "@/sanity/lib/queries";
 import Info from "@/components/Info";
 import Redirect from "@/components/Redirect";
 import { cn } from "@/lib/cn";
 
 const AboutPage = async () => {
   const about = await client.fetch(ABOUT_QUERY);
+  const info = await client.fetch(INFO_QUERY_BY_KEY, { key: "about" });
   const awards = (about?.awards ?? [])
     .slice()
     .sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
 
   return (
     <div>
-      {ABOUT.info && <Info info={ABOUT.info} />}
+      {info?.content && <Info info={info.content} />}
       <div className="padding-x">
         {/* Hero */}
         {about?.title && <p className="">{about.title}</p>}

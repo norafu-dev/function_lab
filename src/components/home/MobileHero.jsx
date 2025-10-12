@@ -3,10 +3,9 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import { HOME } from "@/lib/data";
 import { renderStarEmphasis } from "@/lib/utils";
 
-const MobileHero = ({ src, poster }) => {
+const MobileHero = ({ src, poster, info }) => {
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger, SplitText);
     // 刷新 ScrollTrigger 确保正确计算
@@ -78,9 +77,9 @@ const MobileHero = ({ src, poster }) => {
         </video>
       </div>
 
-      {HOME.info && (
+      {info && (
         <p className="mobile-hero-info absolute left-0 right-0 top-0 mt-0 translate-y-[100vh] text-[24px] leading-[26px] padding-x">
-          {renderStarEmphasis(HOME.info)}
+          {renderStarEmphasis(info)}
         </p>
       )}
     </section>
