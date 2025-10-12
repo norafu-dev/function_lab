@@ -246,7 +246,7 @@ const DomWanderCanvas = ({ lab }) => {
     });
 
     return [items, computedHeight];
-  }, [lab, screenW, screenH, isMobile, baseScreenH]);
+  }, [lab, screenW, screenH, isMobile]);
 
   return (
     <div
