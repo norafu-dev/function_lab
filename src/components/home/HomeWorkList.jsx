@@ -24,7 +24,7 @@ const HomeWorkList = ({ works }) => {
       opacity: 1,
       y: 0,
       ease: "power2.out",
-      stagger: 0.2,
+      stagger: 0.6,
       duration: 0.6,
     });
 

@@ -18,7 +18,7 @@ const Footer = () => {
             <span className="redirect-text transition-colors duration-300">
               Get in touch
             </span>
-            <span className="redirect-arrow inline-flex transition-transform transition-colors duration-300 translate-x-0">
+            <span className="redirect-arrow inline-flex transition-transform duration-300 translate-x-0">
               →
             </span>
           </Link>

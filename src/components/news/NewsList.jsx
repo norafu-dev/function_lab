@@ -62,7 +62,7 @@ const NewsList = ({
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.05, rootMargin: "0px 0px -40% 0px" }
     );
 
     observer.observe(listEl);
