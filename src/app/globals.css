@@ -52,6 +52,15 @@ body {
   color: var(--color-secondary);
 }
 
+.about-title-line,
+.about-subtitle-line {
+  transform-origin: left;
+  transform: scaleX(1);
+  height: 1px;
+  background-color: var(--color-secondary);
+  width: 100%;
+}
+
 .footer-text {
   @apply text-[15px] leading-[18px] md:text-[24px] md:leading-[26px] lg:text-[56px] lg:leading-[60px];
 }
