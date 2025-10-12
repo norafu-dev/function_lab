@@ -33,6 +33,7 @@ const WanderItem = ({
     baseY: 0,
   });
   const initializedRef = useRef(false);
+  const prevInitialYRef = useRef(initialY);
 
   useEffect(() => {
     const el = elRef.current;
@@ -51,7 +52,8 @@ const WanderItem = ({
     s.maxY = maxY;
     s.heightPx = heightPx;
 
-    if (!initializedRef.current) {
+    const initialYChanged = prevInitialYRef.current !== initialY;
+    if (!initializedRef.current || initialYChanged) {
       s.x = Math.random() * (screenW + marginX * 2) - marginX;
       if (typeof initialY === "number") {
         const clampedY = Math.min(Math.max(initialY, minY), maxY);
@@ -59,6 +61,7 @@ const WanderItem = ({
       } else {
         s.y = maxY > minY ? minY + Math.random() * (maxY - minY) : minY;
       }
+      prevInitialYRef.current = initialY;
     } else {
       s.x = Math.max(Math.min(s.x, screenW + marginX), -marginX);
       s.y = Math.min(Math.max(s.y, minY), maxY);
@@ -80,7 +83,7 @@ const WanderItem = ({
     }
 
     // 初始化速度与目标
-    if (!initializedRef.current) {
+    if (!initializedRef.current || initialYChanged) {
       s.speed = speedMin + Math.random() * (speedMax - speedMin);
       pickTarget();
       initializedRef.current = true;
