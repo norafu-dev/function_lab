@@ -5,7 +5,7 @@ import { getVideoUrl, getImageInfo } from "@/lib/utils";
 import { cn } from "@/lib/cn";
 
 const VideoCard = ({ src, className }) => {
-  const { file, thumbnail, autoplay } = src;
+  const { file, thumbnail, autoplay, aspectRatio } = src;
   const videoUrl = getVideoUrl(file);
   const imgUrl = thumbnail ? getImageInfo(thumbnail).imgUrl : null;
   const videoRef = useRef(null);

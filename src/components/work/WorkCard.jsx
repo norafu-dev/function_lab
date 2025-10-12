@@ -10,7 +10,7 @@ const WorkCard = ({ work, autoplay, scale }) => {
   const { hero, slug, title } = work;
   return (
     <Link href={`/work/${slug}`}>
-      <div className="relative group aspect-[1440/810] overflow-hidden">
+      <div className="relative group aspect-[16/9] overflow-hidden">
         {hero.type === "image" ? (
           <ImageCard
             src={hero}

@@ -2,6 +2,20 @@ import ImageCard from "../ImageCard";
 import VideoCard from "../VideoCard";
 import { getImageInfo } from "@/lib/utils";
 
+const DEFAULT_VIDEO_RATIO = 16 / 9;
+
+const getVideoAspectRatio = (aspectRatio) => {
+  if (!aspectRatio) return DEFAULT_VIDEO_RATIO;
+
+  const [width, height] = aspectRatio.split(":").map(Number);
+
+  if (!Number.isFinite(width) || !Number.isFinite(height) || height === 0) {
+    return DEFAULT_VIDEO_RATIO;
+  }
+
+  return width / height;
+};
+
 const Row = ({ items = [], alt }) => {
   const twoCols = items.length === 2;
 
@@ -36,9 +50,11 @@ function Media({ item, alt }) {
     );
   }
 
-  // 视频统一 1440/810
   return (
-    <div className="relative w-full overflow-hidden aspect-[1440/810]">
+    <div
+      className="relative w-full overflow-hidden"
+      style={{ aspectRatio: getVideoAspectRatio(item.aspectRatio) }}
+    >
       <VideoCard src={item} alt={alt} />
     </div>
   );
