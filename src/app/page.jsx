@@ -8,7 +8,7 @@ import {
 import NewsList from "@/components/news/NewsList";
 import { Title } from "@/app/about/page";
 import Redirect from "@/components/Redirect";
-import WorkCard from "@/components/work/WorkCard";
+import HomeWorkList from "@/components/home/HomeWorkList";
 import ResponsiveHero from "@/components/home/ResponsiveHero";
 
 const Home = async () => {
@@ -19,13 +19,8 @@ const Home = async () => {
   return (
     <main>
       <ResponsiveHero video={homePageVideo} info={info} />
-      <section className="pt-[50px] md:pt-[200px]">
-        {works.map((work) => (
-          <div className="lg:pb-[6px]" key={work.title}>
-            <WorkCard work={work} autoplay={true} scale={true} />
-          </div>
-        ))}
-      </section>
+      <div className="h-4 md:hidden"></div>
+      <HomeWorkList works={works} />
       <Redirect
         text="See more works →"
         href={`/work`}
@@ -33,7 +28,7 @@ const Home = async () => {
       />
       <section className="padding-x">
         <Title title="What’s New" />
-        <NewsList news={news} />
+        <NewsList news={news} triggerMode="intersection" />
       </section>
       <Redirect
         text="Read more about what’s going on  →"

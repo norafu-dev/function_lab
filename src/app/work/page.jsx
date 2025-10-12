@@ -19,7 +19,7 @@ const WorkListPage = async () => {
         <Categories categories={categories} />
       </Suspense>
       <Suspense fallback={null}>
-        <WorkList works={works} />
+        <WorkList works={works} triggerMode="scrollTrigger" />
       </Suspense>
     </div>
   );

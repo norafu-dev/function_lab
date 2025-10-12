@@ -1,9 +1,15 @@
 "use client";
 
+import { useEffect, useMemo, useRef } from "react";
 import { useSearchParams } from "next/navigation";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import WorkCard from "./WorkCard";
 
-const WorkList = ({ works }) => {
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+const WorkList = ({ works, triggerMode = "scrollTrigger" }) => {
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get("category");
 
@@ -21,33 +27,103 @@ const WorkList = ({ works }) => {
     return <div className="text-center py-20">暂无有效的作品数据</div>;
   }
 
+  const listRef = useRef(null);
+
+  const filteredWorks = useMemo(() => {
+    if (!categoryParam) return validWorks;
+
+    return validWorks.filter(
+      (work) =>
+        Array.isArray(work.category) &&
+        work.category.map((item) => item.toLowerCase()).includes(categoryParam)
+    );
+  }, [categoryParam, validWorks]);
+
+  useEffect(() => {
+    if (triggerMode !== "intersection") return undefined;
+
+    const listEl = listRef.current;
+    if (!listEl) return undefined;
+
+    const cards = gsap.utils.toArray(
+      listEl.querySelectorAll(".work-card-item")
+    );
+
+    if (!cards.length) return undefined;
+
+    gsap.set(cards, { opacity: 0, y: 60 });
+
+    const tl = gsap.timeline({ paused: true });
+    tl.to(cards, {
+      opacity: 1,
+      y: 0,
+      ease: "power2.out",
+      stagger: 0.2,
+      duration: 0.6,
+    });
+
+    let hasPlayed = false;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasPlayed) {
+            hasPlayed = true;
+            tl.play();
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(listEl);
+
+    return () => {
+      observer.disconnect();
+      tl.kill();
+    };
+  }, [filteredWorks, triggerMode]);
+
+  useGSAP(
+    () => {
+      if (triggerMode !== "scrollTrigger") return;
+
+      const cards = gsap.utils.toArray(
+        listRef.current?.querySelectorAll(".work-card-item") || []
+      );
+
+      if (!cards.length) return;
+
+      gsap.set(cards, { opacity: 0, y: 60 });
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: listRef.current,
+            start: "top bottom-=120",
+            once: true,
+            invalidateOnRefresh: true,
+          },
+        })
+        .to(cards, {
+          opacity: 1,
+          y: 0,
+          ease: "power2.out",
+          stagger: 0.2,
+          duration: 0.6,
+        });
+    },
+    { scope: listRef, dependencies: [filteredWorks, triggerMode] }
+  );
+
   return (
-    <div className="lg:grid lg:grid-cols-2 gap-[6px] mb-[200px]">
-      {!categoryParam
-        ? validWorks.map((work) => (
-            <WorkCard
-              key={work.title}
-              work={work}
-              autoplay={true}
-              scale={true}
-            />
-          ))
-        : validWorks
-            .filter(
-              (work) =>
-                Array.isArray(work.category) &&
-                work.category
-                  .map((item) => item.toLowerCase())
-                  .includes(categoryParam)
-            )
-            .map((work) => (
-              <WorkCard
-                key={work.title}
-                work={work}
-                autoplay={true}
-                scale={true}
-              />
-            ))}
+    <div ref={listRef} className="lg:grid lg:grid-cols-2 gap-[6px] mb-[200px]">
+      {filteredWorks.map((work) => (
+        <div className="work-card-item" key={work.title}>
+          <WorkCard work={work} autoplay={true} scale={true} />
+        </div>
+      ))}
     </div>
   );
 };
