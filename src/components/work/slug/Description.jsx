@@ -30,15 +30,17 @@ const Description = ({ title, description, tags, year }) => {
           <ClampWithReadMore text={description} lines={4} />
         </div>
 
-        <div className="md:hidden col-span-6 mt-[18px] DesContainer">
-          <button onClick={() => setIsShow(!isShow)}>
-            {!isShow && (
-              <span className="text-secondary cursor-pointer">
+        <div className="md:hidden col-span-6 mt-[18px]">
+          {!isShow && (
+            <button onClick={() => setIsShow(!isShow)}>
+              <div className="text-secondary cursor-pointer">
                 +Read about the project
-              </span>
-            )}
-          </button>
-          {isShow && <p>{description}</p>}
+              </div>
+            </button>
+          )}
+          {isShow && (
+            <p className="text-sm whitespace-pre-line">{description}</p>
+          )}
         </div>
       </div>
     </section>

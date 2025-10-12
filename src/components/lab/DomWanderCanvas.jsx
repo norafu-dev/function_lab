@@ -190,11 +190,17 @@ const WanderItem = ({
 
 const DomWanderCanvas = ({ lab }) => {
   const { width: screenW, height: screenH, isMobile } = useViewport();
+  const initialScreenHRef = useRef(screenH || 800);
+  if (!initialScreenHRef.current && screenH) {
+    initialScreenHRef.current = screenH;
+  }
+  const baseScreenH = initialScreenHRef.current || screenH || 800;
   const zCounterRef = useRef(1);
 
   const [itemsWithLayout, canvasHeight] = useMemo(() => {
     if (!lab?.length) {
-      return [[], screenH];
+      // 手机端的高度固定为初始屏幕高度 * 2
+      return [[], isMobile ? baseScreenH * 2 : screenH];
     }
 
     const safeScreenW = screenW || 1;
@@ -224,7 +230,9 @@ const DomWanderCanvas = ({ lab }) => {
     const padding = avgHeight * 0.5;
     const rawHeight = baselineSpacing * count + padding * 2;
     const shrinkFactor = 0.79;
-    const computedHeight = Math.max(screenH, rawHeight * shrinkFactor);
+    const desktopHeight = Math.max(screenH, rawHeight * shrinkFactor);
+    const mobileHeight = baseScreenH * 2;
+    const computedHeight = isMobile ? mobileHeight : desktopHeight;
 
     const step = computedHeight / (count + 1);
 
@@ -241,7 +249,7 @@ const DomWanderCanvas = ({ lab }) => {
     });
 
     return [items, computedHeight];
-  }, [lab, screenW, screenH]);
+  }, [lab, screenW, screenH, isMobile, baseScreenH]);
 
   return (
     <div

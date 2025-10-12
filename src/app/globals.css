@@ -27,7 +27,7 @@ body {
   }
 
   .text-sm {
-    @apply text-[12px] leading-[15px];
+    @apply text-[15px] leading-[18px];
   }
 
   .padding-x {

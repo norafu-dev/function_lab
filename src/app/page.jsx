@@ -20,7 +20,7 @@ const Home = async () => {
       <section className="pt-[30px] md:pt-[200px]">
         {works.map((work) => (
           <div className="lg:pb-[6px]" key={work.title}>
-            <WorkCard work={work} autoplay={true} />
+            <WorkCard work={work} autoplay={true} scale={true} />
           </div>
         ))}
       </section>

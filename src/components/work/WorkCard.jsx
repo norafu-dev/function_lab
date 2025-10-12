@@ -16,7 +16,7 @@ const WorkCard = ({ work, autoplay, scale }) => {
             src={hero}
             alt={title}
             className={
-              scale ? "hover:scale-106 transition-all duration-300" : ""
+              scale ? "hover:scale-104 transition-all duration-400" : ""
             }
           />
         ) : autoplay ? (
@@ -24,7 +24,7 @@ const WorkCard = ({ work, autoplay, scale }) => {
             src={hero}
             alt={title}
             className={
-              scale ? "hover:scale-106 transition-all duration-300" : ""
+              scale ? "hover:scale-104 transition-all duration-400" : ""
             }
           />
         ) : (
@@ -32,7 +32,7 @@ const WorkCard = ({ work, autoplay, scale }) => {
             src={hero}
             alt={title}
             className={
-              scale ? "hover:scale-106 transition-all duration-300" : ""
+              scale ? "hover:scale-104 transition-all duration-400" : ""
             }
           />
         )}
