@@ -76,3 +76,18 @@ body {
 .filter {
   filter: blur(50px);
 }
+
+.info-animated .word-item {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.info-animated > span {
+  display: inline;
+}
+
+.menu-full-height {
+  height: 100vh;
+  height: 100dvh;
+  min-height: -webkit-fill-available;
+}

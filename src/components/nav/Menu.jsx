@@ -200,7 +200,7 @@ export default function Menu({ isOpen, onCloseComplete }) {
         gsap.set(overlay, { clipPath: collapsedTop });
         gsap.to(overlay, {
           clipPath: expanded,
-          duration: 0.6,
+          duration: 0.8,
           ease: "circ.inOut",
         });
       } else {
@@ -222,14 +222,14 @@ export default function Menu({ isOpen, onCloseComplete }) {
   return (
     <div ref={containerRef} className="fixed inset-0 z-[10]">
       <div
-        className="menu-overlay h-full w-full bg-black/12"
+        className="menu-overlay menu-full-height w-full bg-black/12"
         style={{
           clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
           backdropFilter: "blur(50px)",
           WebkitBackdropFilter: "blur(50px)",
         }}
       >
-        <div className="container absolute top-0 left-0 flex flex-col justify-center w-screen min-h-[100dvh] pl-[15px] pb-[env(safe-area-inset-bottom)] tracking-[-0.01em] font-twk">
+        <div className="container absolute top-0 left-0 flex flex-col justify-center w-screen menu-full-height pl-[15px] pb-[env(safe-area-inset-bottom)] pt-[env(safe-area-inset-top)] tracking-[-0.01em] font-twk">
           <div className="flex flex-col text-[56px] leading-[60px]">
             {ROUTES.map((route) => {
               const isActive = activeHref === route.href;

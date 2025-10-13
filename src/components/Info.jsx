@@ -16,7 +16,10 @@ const Info = ({ info, className }) => {
     () => {
       if (!containerRef.current) return;
 
-      const split = new SplitText(containerRef.current, { type: "words" });
+      const split = new SplitText(containerRef.current, {
+        type: "words",
+        wordsClass: "word-item",
+      });
       gsap.set(split.words, { opacity: 0, y: "15%" });
 
       const tl = gsap.timeline();
