@@ -81,7 +81,7 @@ const AboutContent = ({ about, info, awards }) => {
             {
               opacity: 0,
               y: 20,
-              duration: 0.4,
+              duration: 0.6,
               ease: "power2.out",
               stagger: 0.08,
             },

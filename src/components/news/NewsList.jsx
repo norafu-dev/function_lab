@@ -14,6 +14,7 @@ const NewsList = ({
   mobileCount = 4,
   total = 6,
   triggerMode = "scrollTrigger",
+  animateFrom = 0,
 }) => {
   const listRef = useRef(null);
 
@@ -39,7 +40,7 @@ const NewsList = ({
 
     if (!cards.length) return undefined;
 
-    gsap.set(cards, { opacity: 0, y: 40 });
+    gsap.set(cards, { opacity: 0, y: 10 });
 
     const tl = gsap.timeline({ paused: true });
     tl.to(cards, {
@@ -47,7 +48,7 @@ const NewsList = ({
       y: 0,
       ease: "power2.out",
       stagger: 0.15,
-      duration: 0.5,
+      duration: 0.3,
     });
 
     let hasPlayed = false;
@@ -77,32 +78,58 @@ const NewsList = ({
     () => {
       if (triggerMode !== "scrollTrigger") return;
 
-      const cards = gsap.utils.toArray(
+      const allCards = gsap.utils.toArray(
         listRef.current?.querySelectorAll(".news-card-item") || []
       );
 
-      if (!cards.length) return;
+      if (!allCards.length) return;
 
-      gsap.set(cards, { opacity: 0, y: 40 });
+      // 根据 data-index 过滤需要动画的卡片
+      const cardsToAnimate = allCards.filter((card) => {
+        const index = parseInt(card.getAttribute("data-index") || "0", 10);
+        return index >= animateFrom;
+      });
 
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: listRef.current,
-            start: "top bottom-=120",
-            once: true,
-            invalidateOnRefresh: true,
-          },
-        })
-        .to(cards, {
-          opacity: 1,
-          y: 0,
-          ease: "power2.out",
-          stagger: 0.15,
-          duration: 0.5,
+      if (cardsToAnimate.length === 0) return;
+
+      gsap.set(cardsToAnimate, { opacity: 0, y: 10 });
+
+      if (animateFrom > 0) {
+        // 如果是展开动画，立即执行
+        // 添加短暂延迟确保 DOM 已更新
+        gsap.delayedCall(0.05, () => {
+          gsap.to(cardsToAnimate, {
+            opacity: 1,
+            y: 0,
+            ease: "power2.out",
+            stagger: 0.1,
+            duration: 0.4,
+          });
         });
+      } else {
+        // 如果是初始加载，使用 ScrollTrigger
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: listRef.current,
+              start: "top bottom-=120",
+              once: true,
+              invalidateOnRefresh: true,
+            },
+          })
+          .to(cardsToAnimate, {
+            opacity: 1,
+            y: 0,
+            ease: "power2.out",
+            stagger: 0.15,
+            duration: 0.3,
+          });
+      }
     },
-    { scope: listRef, dependencies: [newsWithImageInfo, triggerMode] }
+    {
+      scope: listRef,
+      dependencies: [newsWithImageInfo, triggerMode, animateFrom],
+    }
   );
 
   return (
@@ -115,6 +142,7 @@ const NewsList = ({
         .map(({ cover, title, date }, index) => (
           <div
             key={index}
+            data-index={index}
             className={`news-card-item ${
               index >= mobileCount ? "hidden md:block" : ""
             }`}

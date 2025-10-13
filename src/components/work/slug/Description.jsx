@@ -2,16 +2,57 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import gsap from "gsap";
 
 const Description = ({ title, description, tags, year }) => {
   const [isShow, setIsShow] = useState(false);
+  const contentRef = useRef(null);
+  const textRef = useRef(null);
   const pathname = usePathname();
+
   useEffect(() => {
     setIsShow(false);
   }, [pathname]);
 
+  const handleToggle = () => {
+    if (!contentRef.current || !textRef.current) return;
+
+    if (!isShow) {
+      setIsShow(true);
+
+      // 使用 requestAnimationFrame 确保 DOM 已渲染
+      requestAnimationFrame(() => {
+        if (!contentRef.current || !textRef.current) return;
+
+        // 获取文本的实际高度
+        const textHeight = textRef.current.scrollHeight;
+
+        // 展开动画
+        gsap.fromTo(
+          contentRef.current,
+          {
+            height: 0,
+            opacity: 0,
+          },
+          {
+            height: textHeight,
+            opacity: 1,
+            duration: 0.3,
+            ease: "power2.out",
+            onComplete: () => {
+              // 动画完成后设置为 auto，以便内容可以适应窗口调整
+              if (contentRef.current) {
+                gsap.set(contentRef.current, { height: "auto" });
+              }
+            },
+          }
+        );
+      });
+    }
+  };
+
   return (
-    <section className="w-full padding-x mt-[15px] mb-[60px] md:mt-[30px] md:mb-[200px]">
+    <section className="work-description w-full padding-x mt-[15px] mb-[60px] md:mt-[30px] md:mb-[200px]">
       <h1 className="text-md mb-[30px] md:mb-[90px]">{title}</h1>
 
       <div className="grid-layout text-base">
@@ -32,15 +73,24 @@ const Description = ({ title, description, tags, year }) => {
 
         <div className="md:hidden col-span-6 mt-[18px]">
           {!isShow && (
-            <button onClick={() => setIsShow(!isShow)}>
+            <button onClick={handleToggle}>
               <div className="text-secondary cursor-pointer">
                 +Read about the project
               </div>
             </button>
           )}
-          {isShow && (
-            <p className="text-sm whitespace-pre-line">{description}</p>
-          )}
+          <div
+            ref={contentRef}
+            style={{
+              height: 0,
+              opacity: 0,
+              overflow: "hidden",
+            }}
+          >
+            <p ref={textRef} className="text-sm whitespace-pre-line">
+              {description}
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -50,10 +100,14 @@ const Description = ({ title, description, tags, year }) => {
 function ClampWithReadMore({ text, lines = 4, color }) {
   const containerRef = useRef(null);
   const measureRef = useRef(null);
+  const expandedContentRef = useRef(null);
+  const fullTextRef = useRef(null);
 
   const [expanded, setExpanded] = useState(false);
   const [display, setDisplay] = useState(text);
   const [clamped, setClamped] = useState(false);
+  const [remainingText, setRemainingText] = useState("");
+  const [isInitialized, setIsInitialized] = useState(false);
 
   // 在容器宽度或文本变化时，计算能容纳 4 行并在词边界裁剪的文本
   useEffect(() => {
@@ -92,7 +146,9 @@ function ClampWithReadMore({ text, lines = 4, color }) {
       measurer.textContent = text;
       if (measurer.scrollHeight <= maxHeight + 0.5) {
         setDisplay(text);
+        setRemainingText("");
         setClamped(false);
+        setIsInitialized(true);
         return;
       }
 
@@ -114,8 +170,11 @@ function ClampWithReadMore({ text, lines = 4, color }) {
       if (lastSpace > 0) cut = lastSpace;
 
       const finalText = text.slice(0, cut).replace(/[ \t\n]+$/g, "");
+      const remaining = text.slice(cut);
       setDisplay(finalText);
+      setRemainingText(remaining);
       setClamped(true);
+      setIsInitialized(true);
     };
 
     compute();
@@ -128,27 +187,75 @@ function ClampWithReadMore({ text, lines = 4, color }) {
     };
   }, [text, lines, expanded]);
 
+  const handleExpand = () => {
+    setExpanded(true);
+
+    // 使用 requestAnimationFrame 确保 DOM 已渲染
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (!expandedContentRef.current || !fullTextRef.current) return;
+
+        // 获取完整文本的实际高度
+        const contentHeight = fullTextRef.current.scrollHeight;
+
+        // 展开动画
+        gsap.fromTo(
+          expandedContentRef.current,
+          {
+            height: 0,
+            opacity: 0,
+          },
+          {
+            height: contentHeight,
+            opacity: 1,
+            duration: 0.3,
+            ease: "power2.out",
+            onComplete: () => {
+              // 动画完成后设置为 auto，以便内容可以适应窗口调整
+              if (expandedContentRef.current) {
+                gsap.set(expandedContentRef.current, { height: "auto" });
+              }
+            },
+          }
+        );
+      });
+    });
+  };
+
   return (
     <div ref={containerRef} className={`relative ${color}`}>
       {!expanded ? (
-        <p className={`whitespace-pre-line`}>
-          <span>{display}</span>
+        <div
+          className="whitespace-pre-line"
+          style={{ visibility: isInitialized ? "visible" : "hidden" }}
+        >
+          {display}
           {clamped && (
             <>
-              <span>... </span>
+              ...{" "}
               <button
                 type="button"
-                onClick={() => setExpanded(true)}
-                className="text-[#373737] cursor-pointer"
+                onClick={handleExpand}
+                className="text-[#373737] cursor-pointer inline"
                 aria-expanded={expanded}
               >
                 +Read more
               </button>
             </>
           )}
-        </p>
+        </div>
       ) : (
-        <p className="whitespace-pre-line">{text}</p>
+        <div
+          ref={expandedContentRef}
+          className="whitespace-pre-line"
+          style={{
+            height: 0,
+            opacity: 0,
+            overflow: "hidden",
+          }}
+        >
+          <div ref={fullTextRef}>{text}</div>
+        </div>
       )}
       {/* 隐藏测量元素：与正文相同的换行/宽度规则，用于精确测量高度 */}
       <div

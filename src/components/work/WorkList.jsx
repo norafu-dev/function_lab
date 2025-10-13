@@ -51,7 +51,7 @@ const WorkList = ({ works, triggerMode = "scrollTrigger" }) => {
 
     if (!cards.length) return undefined;
 
-    gsap.set(cards, { opacity: 0, y: 60 });
+    gsap.set(cards, { opacity: 0, y: 20 });
 
     const tl = gsap.timeline({ paused: true });
     tl.to(cards, {
@@ -59,7 +59,7 @@ const WorkList = ({ works, triggerMode = "scrollTrigger" }) => {
       y: 0,
       ease: "power2.out",
       stagger: 0.2,
-      duration: 0.6,
+      duration: 0.4,
     });
 
     let hasPlayed = false;
@@ -95,7 +95,7 @@ const WorkList = ({ works, triggerMode = "scrollTrigger" }) => {
 
       if (!cards.length) return;
 
-      gsap.set(cards, { opacity: 0, y: 60 });
+      gsap.set(cards, { opacity: 0, y: 20 });
 
       gsap
         .timeline({
@@ -111,7 +111,7 @@ const WorkList = ({ works, triggerMode = "scrollTrigger" }) => {
           y: 0,
           ease: "power2.out",
           stagger: 0.2,
-          duration: 0.6,
+          duration: 0.4,
         });
     },
     { scope: listRef, dependencies: [filteredWorks, triggerMode] }

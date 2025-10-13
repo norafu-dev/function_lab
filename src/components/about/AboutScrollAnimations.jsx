@@ -43,7 +43,7 @@ const AboutScrollAnimations = () => {
             titles,
             {
               opacity: 0,
-              y: 40,
+              y: 20,
               duration: 0.5,
               ease: "power2.out",
               stagger: 0.08,
@@ -57,8 +57,8 @@ const AboutScrollAnimations = () => {
             fades,
             {
               opacity: 0,
-              y: 20,
-              duration: 0.4,
+              y: 10,
+              duration: 0.2,
               ease: "power2.out",
               stagger: 0.08,
             },

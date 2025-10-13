@@ -32,6 +32,7 @@ export default function Menu({ isOpen, onCloseComplete }) {
   const containerRef = useRef(null);
   const hasOpenedRef = useRef(false);
   const [activeHref, setActiveHref] = useState(null);
+  const [isClicked, setIsClicked] = useState(false);
   const arrowRefs = useRef({});
   const labelRefs = useRef({});
   const resetTweenRef = useRef(null);
@@ -119,13 +120,17 @@ export default function Menu({ isOpen, onCloseComplete }) {
 
     animateToActive(href);
 
-    resetTweenRef.current = gsap.delayedCall(1.8, () => {
-      if (activeHrefRef.current !== href) return;
-      animateToRest(href);
-      setActiveHref(null);
-      resetTweenRef.current = null;
-    });
-  }, [activeHref, animateToActive, animateToRest]);
+    // 只有在点击时才设置延迟重置
+    if (isClicked) {
+      resetTweenRef.current = gsap.delayedCall(1.8, () => {
+        if (activeHrefRef.current !== href) return;
+        animateToRest(href);
+        setActiveHref(null);
+        setIsClicked(false);
+        resetTweenRef.current = null;
+      });
+    }
+  }, [activeHref, isClicked, animateToActive, animateToRest]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -146,6 +151,7 @@ export default function Menu({ isOpen, onCloseComplete }) {
     });
 
     setActiveHref(null);
+    setIsClicked(false);
   }, [isOpen]);
 
   useEffect(() => {
@@ -239,6 +245,17 @@ export default function Menu({ isOpen, onCloseComplete }) {
                   key={route.href}
                   href={route.href}
                   className="group relative flex items-center w-fit"
+                  onMouseEnter={() => {
+                    if (activeHref !== route.href) {
+                      setActiveHref(route.href);
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    if (activeHref === route.href && !isClicked) {
+                      animateToRest(route.href);
+                      setActiveHref(null);
+                    }
+                  }}
                   onClick={(event) => {
                     if (
                       event.metaKey ||
@@ -258,6 +275,7 @@ export default function Menu({ isOpen, onCloseComplete }) {
                     }
 
                     setActiveHref(route.href);
+                    setIsClicked(true);
 
                     navigationTimeoutRef.current = setTimeout(() => {
                       router.push(route.href);
@@ -295,7 +313,11 @@ export default function Menu({ isOpen, onCloseComplete }) {
               </Link>
             </div>
             <div className="mt-[26px] underline underline-offset-4">
-              <Link href="https://www.instagram.com/function_lab_design/">
+              <Link
+                href="https://www.instagram.com/function_lab_design/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Instagram
               </Link>
             </div>

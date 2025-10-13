@@ -17,14 +17,14 @@ const HomeWorkList = ({ works }) => {
 
     if (!cards.length) return undefined;
 
-    gsap.set(cards, { opacity: 0, y: 60 });
+    gsap.set(cards, { opacity: 0, y: 30 });
 
     const tl = gsap.timeline({ paused: true });
     tl.to(cards, {
       opacity: 1,
       y: 0,
       ease: "power2.out",
-      stagger: 0.6,
+      stagger: 0.4,
       duration: 0.6,
     });
 

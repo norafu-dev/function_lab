@@ -3,7 +3,7 @@ import AutoPlayVideoCard from "../AutoPlayVideoCard";
 
 const Hero = ({ cover, title }) => {
   return (
-    <div className="relative aspect-[1440/810] overflow-hidden">
+    <div className="work-hero relative aspect-[1440/810] overflow-hidden">
       {cover.type === "image" ? (
         <ImageCard src={cover} alt={title} />
       ) : (

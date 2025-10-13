@@ -9,6 +9,7 @@ import Hero from "@/components/work/slug/Hero";
 import Row from "@/components/work/slug/Row";
 import Credits from "@/components/work/slug/Credits";
 import Redirect from "@/components/Redirect";
+import WorkScrollAnimations from "@/components/work/slug/WorkScrollAnimations";
 
 const WorkPage = async ({ params }) => {
   const { slug } = await params;
@@ -33,6 +34,7 @@ const WorkPage = async ({ params }) => {
 
   return (
     <div>
+      <WorkScrollAnimations />
       <Hero cover={hero} title={title} />
       <Description
         title={title}

@@ -33,6 +33,8 @@ const Footer = () => {
         <div>
           <Link
             href="https://www.instagram.com/function_lab_design/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden md:block underline underline-offset-2"
           >
             Instagram
@@ -41,7 +43,7 @@ const Footer = () => {
             href="mailto:hi@functionlab.design"
             className="underline underline-offset-2"
           >
-            Get in touch →
+            Get in touch
           </Link>
         </div>
       </div>
@@ -52,6 +54,8 @@ const Footer = () => {
         <div className="col-start-* col-span-6 lg:col-span-3 flex justify-between">
           <Link
             href="https://www.instagram.com/function_lab_design/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden md:block underline md:underline-offset-3"
           >
             Instagram
@@ -60,7 +64,7 @@ const Footer = () => {
             href="mailto:hi@functionlab.design"
             className="underline md:underline-offset-3"
           >
-            Get in touch →
+            Get in touch
           </Link>
         </div>
       </div>
