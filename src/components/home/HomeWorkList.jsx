@@ -80,7 +80,13 @@ const HomeWorkList = ({ works }) => {
     <section ref={sectionRef} className="pt-[50px] md:pt-[200px]">
       {works.map((work) => (
         <div className="lg:pb-[6px] home-work-card" key={work.title}>
-          <WorkCard work={work} autoplay={true} scale={true} />
+          {/* 传递放大的倍数 */}
+          <WorkCard
+            work={work}
+            autoplay={true}
+            scale={true}
+            scaleFactor={1.02}
+          />
         </div>
       ))}
     </section>

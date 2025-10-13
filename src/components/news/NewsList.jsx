@@ -108,7 +108,7 @@ const NewsList = ({
   return (
     <div
       ref={listRef}
-      className="grid grid-cols-2 md:grid-cols-3 gap-x-[6px] gap-y-[60px] lg:gap-x-[30px] lg:gap-y-[30px]"
+      className="grid grid-cols-2 md:grid-cols-3 gap-x-[6px] gap-y-[30px] lg:gap-x-[30px] lg:gap-y-[60px]"
     >
       {newsWithImageInfo
         .slice(0, total)

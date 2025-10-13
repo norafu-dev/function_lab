@@ -52,6 +52,14 @@ body {
   color: var(--color-secondary);
 }
 
+.hover-scale {
+  --scale-value: 1.04;
+}
+
+.hover-scale:hover {
+  transform: scale(var(--scale-value));
+}
+
 .about-title-line,
 .about-subtitle-line {
   transform-origin: left;

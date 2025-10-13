@@ -6,8 +6,17 @@ import VideoCard from "./VideoCard";
 import AutoPlayVideoCard from "./AutoPlayVideoCard";
 import LinearBlur from "@/components/nav/LinearBlur";
 
-const WorkCard = ({ work, autoplay, scale }) => {
+const WorkCard = ({ work, autoplay, scale, scaleFactor }) => {
   const { hero, slug, title } = work;
+  const scaleValue = scaleFactor ? scaleFactor : 1.04;
+
+  const scaleStyle = scale
+    ? {
+        "--scale-value": scaleValue,
+        transition: "all 400ms",
+      }
+    : {};
+
   return (
     <Link href={`/work/${slug}`}>
       <div className="relative group aspect-[16/9] overflow-hidden">
@@ -15,25 +24,22 @@ const WorkCard = ({ work, autoplay, scale }) => {
           <ImageCard
             src={hero}
             alt={title}
-            className={
-              scale ? "hover:scale-104 transition-all duration-400" : ""
-            }
+            className={scale ? "hover-scale" : ""}
+            style={scaleStyle}
           />
         ) : autoplay ? (
           <AutoPlayVideoCard
             src={hero}
             alt={title}
-            className={
-              scale ? "hover:scale-104 transition-all duration-400" : ""
-            }
+            className={scale ? "hover-scale" : ""}
+            style={scaleStyle}
           />
         ) : (
           <VideoCard
             src={hero}
             alt={title}
-            className={
-              scale ? "hover:scale-104 transition-all duration-400" : ""
-            }
+            className={scale ? "hover-scale" : ""}
+            style={scaleStyle}
           />
         )}
         {/* title for desktop */}
@@ -53,14 +59,14 @@ const WorkCard = ({ work, autoplay, scale }) => {
                 pointerEvents: "none",
               }}
             />
-            <div className="absolute inset-0 z-20 flex items-center px-[30px] text-[12px] leading-[15px]">
+            <div className="absolute inset-0 z-20 flex items-center px-[30px] text-[12px] leading-[15px] opacity-0 translate-y-[2px] group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400">
               {title}
             </div>
           </div>
         </div>
       </div>
       {/* title for mobile */}
-      <div className="block lg:hidden w-full p-[15px] md:p-[30px] text-sm">
+      <div className="block lg:hidden w-full p-[15px] md:p-[30px] text-sm hover:text-secondary transition-colors duration-300">
         <span className="text-secondary pr-[3px]">↑</span>
         {title}
       </div>

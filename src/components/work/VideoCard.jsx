@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { getVideoUrl, getImageInfo } from "@/lib/utils";
 import { cn } from "@/lib/cn";
 
-const VideoCard = ({ src, className }) => {
+const VideoCard = ({ src, className, style }) => {
   const { file, thumbnail, autoplay, aspectRatio } = src;
   const videoUrl = getVideoUrl(file);
   const imgUrl = thumbnail ? getImageInfo(thumbnail).imgUrl : null;
@@ -33,6 +33,7 @@ const VideoCard = ({ src, className }) => {
       <video
         ref={videoRef}
         className={cn("block w-full h-full object-cover", className)}
+        style={style}
         poster={imgUrl}
         autoPlay={autoplay}
         controls={showControls && !autoplay}

@@ -19,9 +19,17 @@ const NewsShowMore = ({ news }) => {
       <button
         type="button"
         onClick={() => setExpanded((v) => !v)}
-        className={cn("w-full text-left text-md", expanded && "hidden")}
+        className={cn(
+          "w-full text-left text-md redirect-link inline-flex items-center gap-2 transition-colors duration-300",
+          expanded && "hidden"
+        )}
       >
-        <h2>Keep reading →</h2>
+        <h2 className="redirect-text transition-colors duration-300">
+          Keep reading
+        </h2>
+        <span className="redirect-arrow inline-flex transition-transform duration-300 translate-x-0">
+          →
+        </span>
       </button>
     </>
   );
