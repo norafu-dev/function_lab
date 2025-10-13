@@ -77,7 +77,7 @@ const HomeWorkList = ({ works }) => {
   }, [works]);
 
   return (
-    <section ref={sectionRef} className="pt-[50px] md:pt-[200px]">
+    <section ref={sectionRef} className="pt-[50px] lg:pt-[200px]">
       {works.map((work) => (
         <div className="lg:pb-[6px] home-work-card" key={work.title}>
           {/* 传递放大的倍数 */}
