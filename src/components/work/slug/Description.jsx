@@ -102,6 +102,8 @@ function ClampWithReadMore({ text, lines = 4, color }) {
   const measureRef = useRef(null);
   const expandedContentRef = useRef(null);
   const fullTextRef = useRef(null);
+  const clampedContentRef = useRef(null); // 折叠层的 ref
+  const wrapperRef = useRef(null); // 包裹层的 ref
 
   const [expanded, setExpanded] = useState(false);
   const [display, setDisplay] = useState(text);
@@ -188,49 +190,88 @@ function ClampWithReadMore({ text, lines = 4, color }) {
   }, [text, lines, expanded]);
 
   const handleExpand = () => {
+    if (
+      !expandedContentRef.current ||
+      !fullTextRef.current ||
+      !clampedContentRef.current ||
+      !wrapperRef.current
+    )
+      return;
+
     setExpanded(true);
 
-    // 使用 requestAnimationFrame 确保 DOM 已渲染
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        if (!expandedContentRef.current || !fullTextRef.current) return;
+    // 立即获取完整文本的高度
+    const contentHeight = fullTextRef.current.scrollHeight;
 
-        // 获取完整文本的实际高度
-        const contentHeight = fullTextRef.current.scrollHeight;
+    // 创建一个时间线，同时处理三层内容
+    const tl = gsap.timeline();
 
-        // 展开动画
-        gsap.fromTo(
-          expandedContentRef.current,
-          {
-            height: 0,
-            opacity: 0,
-          },
-          {
-            height: contentHeight,
-            opacity: 1,
-            duration: 0.3,
-            ease: "power2.out",
-            onComplete: () => {
-              // 动画完成后设置为 auto，以便内容可以适应窗口调整
-              if (expandedContentRef.current) {
-                gsap.set(expandedContentRef.current, { height: "auto" });
-              }
-            },
+    // 同时进行：
+    // 1. 展开完整内容层（从 height 0 到完整高度）
+    tl.to(
+      expandedContentRef.current,
+      {
+        height: contentHeight,
+        opacity: 1,
+        duration: 0.35,
+        ease: "power2.out",
+        onComplete: () => {
+          // 动画完成后设置为 auto，以便内容可以适应窗口调整
+          if (expandedContentRef.current) {
+            gsap.set(expandedContentRef.current, { height: "auto" });
           }
-        );
-      });
-    });
+          if (wrapperRef.current) {
+            gsap.set(wrapperRef.current, { height: "auto" });
+          }
+        },
+      },
+      0
+    );
+
+    // 2. 同时调整包裹层的高度（从折叠高度到完整高度）
+    tl.to(
+      wrapperRef.current,
+      {
+        height: contentHeight,
+        duration: 0.35,
+        ease: "power2.out",
+      },
+      0
+    );
+
+    // 3. 稍微延迟后淡出折叠层（延迟0.15秒，持续0.25秒）
+    tl.to(
+      clampedContentRef.current,
+      {
+        opacity: 0,
+        duration: 0.25,
+        ease: "power2.out",
+        onComplete: () => {
+          // 动画完成后完全移除折叠层
+          if (clampedContentRef.current) {
+            clampedContentRef.current.style.display = "none";
+          }
+        },
+      },
+      0.15
+    );
   };
 
   return (
     <div ref={containerRef} className={`relative ${color}`}>
-      {!expanded ? (
+      <div ref={wrapperRef} className="relative overflow-hidden">
+        {/* 折叠层 - 始终渲染，用于占据文档流空间 */}
         <div
-          className="whitespace-pre-line"
-          style={{ visibility: isInitialized ? "visible" : "hidden" }}
+          ref={clampedContentRef}
+          className="whitespace-pre-line relative z-10"
+          style={{
+            visibility: isInitialized ? "visible" : "hidden",
+            opacity: 1,
+            pointerEvents: expanded ? "none" : "auto",
+          }}
         >
           {display}
-          {clamped && (
+          {clamped && !expanded && (
             <>
               ...{" "}
               <button
@@ -244,19 +285,23 @@ function ClampWithReadMore({ text, lines = 4, color }) {
             </>
           )}
         </div>
-      ) : (
-        <div
-          ref={expandedContentRef}
-          className="whitespace-pre-line"
-          style={{
-            height: 0,
-            opacity: 0,
-            overflow: "hidden",
-          }}
-        >
-          <div ref={fullTextRef}>{text}</div>
-        </div>
-      )}
+
+        {/* 完整内容层 - 绝对定位覆盖在折叠层上，初始折叠状态 */}
+        {clamped && (
+          <div
+            ref={expandedContentRef}
+            className="whitespace-pre-line absolute top-0 left-0 w-full z-20"
+            style={{
+              height: 0,
+              opacity: 0,
+              overflow: "hidden",
+            }}
+          >
+            <div ref={fullTextRef}>{text}</div>
+          </div>
+        )}
+      </div>
+
       {/* 隐藏测量元素：与正文相同的换行/宽度规则，用于精确测量高度 */}
       <div
         ref={measureRef}
