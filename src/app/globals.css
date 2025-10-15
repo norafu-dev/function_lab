@@ -4,8 +4,8 @@
   --font-chivo: var(--font-chivo-mono);
   --font-twk: var(--font-twk-lausanne);
   /* 响应式 */
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 1280px;
+  --breakpoint-md: 550px;
+  --breakpoint-lg: 1024px;
   /* 颜色 */
   --color-secondary: #8c8c8c;
 }
@@ -87,8 +87,5 @@ body {
 }
 
 .menu-full-height {
-  min-height: 100vh;
-  min-height: 100svh;
-  height: 120dvh;
-  min-height: -webkit-fill-available;
+  height: 130dvh;
 }
