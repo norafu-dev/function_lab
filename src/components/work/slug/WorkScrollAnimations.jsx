@@ -9,18 +9,16 @@ gsap.registerPlugin(ScrollTrigger);
 const WorkScrollAnimations = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero 渐入动画
+      // Hero 渐入动画（仅透明度，不含位移）
       const hero = document.querySelector(".work-hero");
       if (hero) {
         gsap.fromTo(
           hero,
           {
             opacity: 0,
-            y: 20,
           },
           {
             opacity: 1,
-            y: 0,
             duration: 0.8,
             ease: "power2.out",
           }
@@ -69,18 +67,16 @@ const WorkScrollAnimations = () => {
         );
       });
 
-      // Credits 渐入动画
+      // Credits 渐入动画（仅透明度，不含位移）
       const credits = document.querySelector(".work-credits");
       if (credits) {
         gsap.fromTo(
           credits,
           {
             opacity: 0,
-            y: 40,
           },
           {
             opacity: 1,
-            y: 0,
             duration: 0.6,
             ease: "power2.out",
             scrollTrigger: {
