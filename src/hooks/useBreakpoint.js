@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const TABLET_MIN_WIDTH = 768;
-const DESKTOP_MIN_WIDTH = 1280;
+const DESKTOP_MIN_WIDTH = 1080;
 
 const getBreakpoint = (width) => {
   if (width >= DESKTOP_MIN_WIDTH) return "desktop";

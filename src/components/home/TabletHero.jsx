@@ -42,7 +42,7 @@ const TabletHero = ({ src, poster, info }) => {
       .fromTo(
         ".tablet-hero-info",
         { y: "100vh" },
-        { y: "80vh", ease: "power1.inOut", duration: 1.2 },
+        { y: "85vh", ease: "power1.inOut", duration: 1.2 },
         "<0.1"
       )
       .to(
@@ -63,7 +63,7 @@ const TabletHero = ({ src, poster, info }) => {
   });
 
   return (
-    <section className="tablet-hero hidden  relative md:flex lg:hidden h-screen items-center justify-center overflow-hidden">
+    <section className="tablet-hero relative flex h-screen items-center justify-center overflow-hidden">
       <div className="tablet-hero-frame">
         <video
           autoPlay

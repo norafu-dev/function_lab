@@ -41,8 +41,8 @@ const MobileHero = ({ src, poster, info }) => {
     )
       .fromTo(
         ".mobile-hero-info",
-        { y: "100vh" },
-        { y: "80vh", ease: "power1.inOut", duration: 1.2 },
+        { y: "80vh" },
+        { y: "70vh", ease: "power1.inOut", duration: 1.2 },
         "<0.1"
       )
       .to(
@@ -63,7 +63,7 @@ const MobileHero = ({ src, poster, info }) => {
   });
 
   return (
-    <section className="mobile-hero md:hidden relative flex min-h-[100dvh] items-center justify-center overflow-hidden pb-[env(safe-area-inset-bottom)]">
+    <section className="mobile-hero relative flex min-h-[100dvh] items-center justify-center overflow-hidden pb-[env(safe-area-inset-bottom)]">
       <div className="mobile-hero-frame">
         <video
           autoPlay

@@ -48,7 +48,7 @@ const Hero = ({ src, poster, info }) => {
   });
 
   return (
-    <section className="hidden lg:block hero relative">
+    <section className="hero relative">
       <figure className="flex h-screen w-full items-center justify-center">
         <video
           autoPlay
