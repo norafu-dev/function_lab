@@ -41,8 +41,8 @@ const MobileHero = ({ src, poster, info }) => {
     )
       .fromTo(
         ".mobile-hero-info",
-        { y: "80vh" },
-        { y: "75vh", ease: "power1.inOut", duration: 1.2 },
+        { y: "78vh" },
+        { y: "73vh", ease: "power1.inOut", duration: 1.2 },
         "<0.1"
       )
       .to(

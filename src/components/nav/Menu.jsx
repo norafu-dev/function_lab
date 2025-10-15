@@ -226,7 +226,7 @@ export default function Menu({ isOpen, onCloseComplete }) {
   );
 
   return (
-    <div ref={containerRef} className="fixed inset-0 z-[10]">
+    <div ref={containerRef} className="fixed inset-0 z-[10] overflow-hidden">
       <div
         className="menu-overlay menu-full-height w-full bg-black/12"
         style={{
