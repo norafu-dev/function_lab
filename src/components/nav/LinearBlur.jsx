@@ -16,6 +16,11 @@ export default function LinearBlur({
   tint,
   side,
   style,
+  // 渐入渐出进度（0-1），不使用整体 opacity，避免变暗问题
+  progress = 1,
+  // 过渡时长（毫秒）与缓动
+  duration = 400,
+  easing = "ease",
   ...props
 }) {
   const [isClient, setIsClient] = useState(false);
@@ -33,8 +38,13 @@ export default function LinearBlur({
   const mainPercentage = 100 - falloffPercentage;
 
   const getBackdrop = (i) =>
-    `blur(${factor * base ** (actualSteps - i - 1)}px)`;
+    `blur(${factor * base ** (actualSteps - i - 1) * Math.max(0, Math.min(1, progress ?? 1))}px)`;
   const dir = `to ${oppositeSide[side]}`;
+
+  const transitionStyle = {
+    transition: `backdrop-filter ${duration}ms ${easing}, -webkit-backdrop-filter ${duration}ms ${easing}`,
+    willChange: "backdrop-filter",
+  };
 
   // 在客户端渲染之前，返回一个占位符
   if (!isClient) {
@@ -80,6 +90,7 @@ export default function LinearBlur({
             WebkitMaskImage: `linear-gradient(${dir}, rgba(0,0,0,1) ${mainPercentage}%, rgba(0,0,0,0) ${mainPercentage + step}%)`,
             backdropFilter: getBackdrop(0),
             WebkitBackdropFilter: getBackdrop(0),
+            ...transitionStyle,
           }}
         />
         {/* 第 1 层（若存在）：主区间再延伸一步 */}
@@ -101,6 +112,7 @@ export default function LinearBlur({
               )`,
               backdropFilter: getBackdrop(1),
               WebkitBackdropFilter: getBackdrop(1),
+              ...transitionStyle,
             }}
           />
         )}
@@ -127,6 +139,7 @@ export default function LinearBlur({
                 )`,
                 backdropFilter: getBackdrop(i + 2),
                 WebkitBackdropFilter: getBackdrop(i + 2),
+                ...transitionStyle,
               }}
             />
           ))}

@@ -216,7 +216,7 @@ const DomWanderCanvas = ({ lab }) => {
     const safeScreenH = screenH || MOBILE_BASE_HEIGHT;
 
     if (!lab?.length) {
-      return [[], isMobile ? MOBILE_BASE_HEIGHT * 1.8 : safeScreenH];
+      return [[], isMobile ? MOBILE_BASE_HEIGHT * 2.5 : safeScreenH];
     }
 
     const safeScreenW = screenW || 1;
@@ -247,7 +247,7 @@ const DomWanderCanvas = ({ lab }) => {
     const rawHeight = baselineSpacing * count + padding * 2;
     const shrinkFactor = 0.79;
     const desktopHeight = Math.max(safeScreenH, rawHeight * shrinkFactor);
-    const mobileHeight = MOBILE_BASE_HEIGHT * 1.8;
+    const mobileHeight = MOBILE_BASE_HEIGHT * 2.5;
     const computedHeight = isMobile ? mobileHeight : desktopHeight;
 
     const step = computedHeight / (count + 1);
