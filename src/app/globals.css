@@ -89,6 +89,6 @@ body {
 .menu-full-height {
   min-height: 100vh;
   min-height: 100svh;
-  height: 115dvh;
+  height: 118dvh;
   min-height: -webkit-fill-available;
 }
