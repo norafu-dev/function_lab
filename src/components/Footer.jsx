@@ -23,8 +23,13 @@ const Footer = () => {
             </span>
           </Link>
         </div>
-        <div className="col-start-* underline underline-offset-2 md:underline-offset-3 lg:underline-offset-7">
-          <Link href="mailto:hi@functionlab.design">hi@functionlab.design</Link>
+        <div className="col-start-* underline underline-offset-2 md:underline-offset-3 lg:underline-offset-7 redirect-link">
+          <Link
+            className="redirect-text transition-colors duration-300"
+            href="mailto:hi@functionlab.design"
+          >
+            hi@functionlab.design
+          </Link>
         </div>
       </div>
       {/* phone */}
@@ -35,13 +40,13 @@ const Footer = () => {
             href="https://www.instagram.com/function_lab_design/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:block underline underline-offset-2"
+            className="hidden md:block underline underline-offset-2 hover:text-secondary transition-colors duration-300"
           >
             Instagram
           </Link>
           <Link
             href="mailto:hi@functionlab.design"
-            className="underline underline-offset-2"
+            className="underline underline-offset-2 hover:text-secondary transition-colors duration-300"
           >
             Get in touch
           </Link>
@@ -56,13 +61,13 @@ const Footer = () => {
             href="https://www.instagram.com/function_lab_design/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:block underline md:underline-offset-3"
+            className="hidden md:block underline md:underline-offset-3 hover:text-secondary transition-colors duration-300"
           >
             Instagram
           </Link>
           <Link
             href="mailto:hi@functionlab.design"
-            className="underline md:underline-offset-3"
+            className="underline md:underline-offset-3 hover:text-secondary transition-colors duration-300"
           >
             Get in touch
           </Link>
