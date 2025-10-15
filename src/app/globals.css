@@ -87,6 +87,6 @@ body {
 }
 
 .menu-full-height {
-  /* 130dvh 可以保证在手机上显示完整 */
-  height: 130dvh;
+  min-height: 100vh;
+  height: 300vh;
 }
