@@ -65,9 +65,9 @@ const WorkCard = ({ work, autoplay, scale, scaleFactor }) => {
                 <div
                   className="absolute inset-0 z-0 pointer-events-none"
                   style={{
-                    background: `linear-gradient(to top, rgba(0,0,0,${0.2 * blurProgress}) 0%, rgba(0,0,0,0) 100%)`,
-                    transition:
-                      "background 900ms cubic-bezier(0.22, 1, 0.36, 1)",
+                    background: `linear-gradient(to top, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 100%)`,
+                    opacity: blurProgress,
+                    transition: "opacity 900ms cubic-bezier(0.22, 1, 0.36, 1)",
                   }}
                 />
                 <LinearBlur
@@ -88,7 +88,7 @@ const WorkCard = ({ work, autoplay, scale, scaleFactor }) => {
                 />
               </>
             )}
-            <div className="absolute inset-0 z-20 flex items-center px-[30px] text-[12px] leading-[15px] opacity-0 translate-y-[2px] group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-600">
+            <div className="absolute inset-0 z-20 flex items-center px-[30px] text-[12px] leading-[15px] opacity-0 group-hover:opacity-100 transition-opacity duration-400">
               {title}
             </div>
           </div>
