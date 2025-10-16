@@ -33,7 +33,7 @@ const Home = async () => {
       <Redirect
         text="Read more about what’s going on  →"
         href={`/news`}
-        className="padding-x border-0 mb-[100px] md:mb-[200px] lg:mb-[400px] mt-[30px] lg:mt-[90px]"
+        className="keep-reading-btn padding-x border-0 mb-[100px] md:mb-[200px] lg:mb-[400px] mt-[30px] lg:mt-[90px]"
       />
     </main>
   );

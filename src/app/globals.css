@@ -4,8 +4,8 @@
   --font-chivo: var(--font-chivo-mono);
   --font-twk: var(--font-twk-lausanne);
   /* 响应式 */
-  --breakpoint-md: 550px;
-  --breakpoint-lg: 1024px;
+  --breakpoint-md: 600px;
+  --breakpoint-lg: 1035px;
   /* 颜色 */
   --color-secondary: #8c8c8c;
 }
@@ -41,6 +41,12 @@ body {
   .underline-offset {
     @apply underline underline-offset-7;
   }
+}
+
+.keep-reading-btn {
+  @apply text-[15px] leading-[18px] tracking-[-0.0045em]
+    md:text-[24px] md:leading-[26px] md:tracking-[-0.009em]
+    lg:text-[56px] lg:leading-[60px] lg:tracking-[-0.018em];
 }
 
 .redirect-link:hover .redirect-arrow {

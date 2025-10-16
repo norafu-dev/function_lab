@@ -134,7 +134,7 @@ const Title = ({ title, className }) => {
   return (
     <div
       className={cn(
-        "about-title-block mt-[200px] lg:mt-[400px] mb-[90px] md:mb-[150px] lg:mb-[200px]",
+        "about-title-block mt-[200px] lg:mt-[400px] mb-[60px] md:mb-[100px] lg:mb-[200px]",
         className
       )}
     >

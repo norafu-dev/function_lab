@@ -33,7 +33,7 @@ const NewsShowMore = ({ news }) => {
         type="button"
         onClick={() => setExpanded((v) => !v)}
         className={cn(
-          "w-full text-left text-base md:text-md redirect-link inline-flex items-center gap-2 transition-colors duration-300",
+          "w-full text-left keep-reading-btn cursor-pointer redirect-link inline-flex items-center gap-2 transition-colors duration-300",
           expanded && "hidden"
         )}
       >
