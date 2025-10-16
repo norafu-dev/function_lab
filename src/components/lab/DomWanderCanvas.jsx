@@ -212,14 +212,27 @@ const DomWanderCanvas = ({ lab }) => {
   const MOBILE_BASE_HEIGHT = 812; // 近似常见手机视窗高度（iPhone 11）
   const zCounterRef = useRef(1);
 
+  // 防抖处理：延迟更新尺寸，避免快速调整时频繁重算
+  const [debouncedScreenW, setDebouncedScreenW] = useState(screenW);
+  const [debouncedScreenH, setDebouncedScreenH] = useState(screenH);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedScreenW(screenW);
+      setDebouncedScreenH(screenH);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [screenW, screenH]);
+
   const [itemsWithLayout, canvasHeight] = useMemo(() => {
-    const safeScreenH = screenH || MOBILE_BASE_HEIGHT;
+    const safeScreenH = debouncedScreenH || MOBILE_BASE_HEIGHT;
 
     if (!lab?.length) {
       return [[], isMobile ? MOBILE_BASE_HEIGHT * 2.5 : safeScreenH];
     }
 
-    const safeScreenW = screenW || 1;
+    const safeScreenW = debouncedScreenW || 1;
 
     const baseItems = lab.map((it, index) => {
       const { imgUrl, ratio } = getImageInfo(it.cover);
@@ -265,7 +278,7 @@ const DomWanderCanvas = ({ lab }) => {
     });
 
     return [items, computedHeight];
-  }, [lab, screenW, screenH, isMobile]);
+  }, [lab, debouncedScreenW, debouncedScreenH, isMobile]);
 
   return (
     <div
@@ -287,8 +300,8 @@ const DomWanderCanvas = ({ lab }) => {
             coverRef={imgRef}
             size={it.size}
             ratio={it.ratio}
-            screenW={screenW}
-            screenH={screenH}
+            screenW={debouncedScreenW}
+            screenH={debouncedScreenH}
             initialY={it.initialY}
             canvasHeight={canvasHeight}
             dragEnabled={!isMobile}
