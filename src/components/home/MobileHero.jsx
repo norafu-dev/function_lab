@@ -16,7 +16,7 @@ const MobileHero = ({ src, poster, info }) => {
       scrollTrigger: {
         trigger: ".mobile-hero",
         start: "top top",
-        end: "+=120%",
+        end: "+=150%",
         scrub: 1,
         pin: true,
         pinSpacing: "margin",
