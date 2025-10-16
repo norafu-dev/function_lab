@@ -19,6 +19,7 @@ const Home = async () => {
   return (
     <main>
       <ResponsiveHero video={homePageVideo} info={info} />
+      <div className="lg:pt-[190px]"></div>
       <HomeWorkList works={works} />
       <Redirect
         text="See more works →"

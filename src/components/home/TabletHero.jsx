@@ -37,7 +37,7 @@ const TabletHero = ({ src, poster, info }) => {
     tl.fromTo(
       ".tablet-hero-video",
       { scale: 1, yPercent: 0 },
-      { scale: 1.8, yPercent: -40, ease: "power1.inOut", duration: 1 }
+      { scale: 1.8, yPercent: -60, ease: "power1.inOut", duration: 1 }
     )
       .fromTo(
         ".tablet-hero-info",
@@ -47,7 +47,7 @@ const TabletHero = ({ src, poster, info }) => {
       )
       .to(
         ".tablet-hero-video",
-        { yPercent: -50, duration: 1, ease: "power1.inOut" },
+        { yPercent: -70, duration: 1, ease: "power1.inOut" },
         "<0.5"
       )
       .to(

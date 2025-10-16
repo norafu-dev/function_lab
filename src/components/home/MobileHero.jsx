@@ -37,7 +37,7 @@ const MobileHero = ({ src, poster, info }) => {
     tl.fromTo(
       ".mobile-hero-video",
       { scale: 1, yPercent: 0 },
-      { scale: 1.8, yPercent: -40, ease: "power1.inOut", duration: 0.8 }
+      { scale: 1.8, yPercent: -60, ease: "power1.inOut", duration: 0.8 }
     )
       .fromTo(
         ".mobile-hero-info",
@@ -52,7 +52,7 @@ const MobileHero = ({ src, poster, info }) => {
       )
       .to(
         ".mobile-hero-video",
-        { yPercent: -50, duration: 0.5, ease: "power1.inOut" },
+        { yPercent: -70, duration: 0.5, ease: "power1.inOut" },
         "<0.5"
       );
 

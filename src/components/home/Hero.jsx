@@ -31,13 +31,13 @@ const Hero = ({ src, poster, info }) => {
     )
       .fromTo(
         ".hero-info",
-        { y: "110vh" },
+        { y: "107vh" },
         { y: "80vh", ease: "power1.inOut", duration: 1 },
-        "<15%"
+        "<5%"
       )
       .to(
         split.words,
-        { opacity: 1, stagger: 0.04, ease: "power1.inOut", duration: 0.4 },
+        { opacity: 1, stagger: 0.04, ease: "power1.inOut", duration: 0.5 },
         "<"
       );
 
