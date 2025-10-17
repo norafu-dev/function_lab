@@ -37,23 +37,18 @@ const TabletHero = ({ src, poster, info }) => {
     tl.fromTo(
       ".tablet-hero-video",
       { scale: 1, yPercent: 0 },
-      { scale: 1.8, yPercent: -60, ease: "power1.inOut", duration: 1 }
+      { scale: 1.8, yPercent: -50, ease: "power1.inOut", duration: 1 }
     )
       .fromTo(
         ".tablet-hero-info",
         { y: "100vh" },
-        { y: "85vh", ease: "power1.inOut", duration: 1.2 },
-        "<0.1"
-      )
-      .to(
-        ".tablet-hero-video",
-        { yPercent: -70, duration: 1, ease: "power1.inOut" },
-        "<0.5"
+        { y: "85vh", ease: "power1.inOut", duration: 1 },
+        "<0.3"
       )
       .to(
         split.words,
         { opacity: 1, stagger: 0.05, ease: "power1.out", duration: 0.7 },
-        "<"
+        "<0.2"
       );
 
     return () => {
