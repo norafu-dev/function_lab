@@ -37,23 +37,18 @@ const MobileHero = ({ src, poster, info }) => {
     tl.fromTo(
       ".mobile-hero-video",
       { scale: 1, yPercent: 0 },
-      { scale: 1.8, yPercent: -60, ease: "power1.inOut", duration: 0.8 }
+      { scale: 1.8, yPercent: -65, ease: "power1.inOut", duration: 1 }
     )
       .fromTo(
         ".mobile-hero-info",
         { y: "76vh" },
-        { y: "71vh", ease: "power1.inOut", duration: 1.2 },
-        "<0.1"
+        { y: "71vh", ease: "power1.inOut", duration: 1 },
+        "<0.3"
       )
       .to(
         split.words,
         { opacity: 1, stagger: 0.05, ease: "power1.out", duration: 0.7 },
-        "<"
-      )
-      .to(
-        ".mobile-hero-video",
-        { yPercent: -70, duration: 0.5, ease: "power1.inOut" },
-        "<0.5"
+        "<0.2"
       );
 
     return () => {
