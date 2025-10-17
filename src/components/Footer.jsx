@@ -13,6 +13,7 @@ const Footer = () => {
         <div>
           <Link
             href="mailto:hi@functionlab.design"
+            target="_blank"
             className="redirect-link inline-flex items-center gap-2 transition-colors duration-300"
           >
             <span className="redirect-text transition-colors duration-300">
@@ -27,6 +28,7 @@ const Footer = () => {
           <Link
             className="redirect-text transition-colors duration-300"
             href="mailto:hi@functionlab.design"
+            target="_blank"
           >
             hi@functionlab.design
           </Link>
@@ -46,6 +48,7 @@ const Footer = () => {
           </Link>
           <Link
             href="mailto:hi@functionlab.design"
+            target="_blank"
             className="underline underline-offset-2 hover:text-secondary transition-colors duration-300"
           >
             Get in touch
@@ -67,6 +70,7 @@ const Footer = () => {
           </Link>
           <Link
             href="mailto:hi@functionlab.design"
+            target="_blank"
             className="underline md:underline-offset-3 hover:text-secondary transition-colors duration-300"
           >
             Get in touch

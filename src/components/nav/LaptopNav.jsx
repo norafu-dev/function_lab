@@ -64,7 +64,9 @@ export default function LaptopNav() {
           </li>
         ))}
         <li className="px-[15px] py-[5px] rounded-full border border-white hover:bg-white hover:text-black transition-all duration-300">
-          <Link href="mailto:hi@functionlab.design">Contact</Link>
+          <Link href="mailto:hi@functionlab.design" target="_blank">
+            Contact
+          </Link>
         </li>
       </ul>
     </nav>
