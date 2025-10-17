@@ -1246,6 +1246,846 @@ const work = {
         },
       ],
     },
+    {
+      name: "row21",
+      title: "Row 21",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "aspectRatio",
+                  title: "Aspect Ratio",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "16:9", value: "16:9" },
+                      { title: "4:3", value: "4:3" },
+                      { title: "1:1", value: "1:1" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "16:9",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row22",
+      title: "Row 22",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "aspectRatio",
+                  title: "Aspect Ratio",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "16:9", value: "16:9" },
+                      { title: "4:3", value: "4:3" },
+                      { title: "1:1", value: "1:1" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "16:9",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row23",
+      title: "Row 23",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "aspectRatio",
+                  title: "Aspect Ratio",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "16:9", value: "16:9" },
+                      { title: "4:3", value: "4:3" },
+                      { title: "1:1", value: "1:1" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "16:9",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row24",
+      title: "Row 24",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "aspectRatio",
+                  title: "Aspect Ratio",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "16:9", value: "16:9" },
+                      { title: "4:3", value: "4:3" },
+                      { title: "1:1", value: "1:1" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "16:9",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row25",
+      title: "Row 25",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "aspectRatio",
+                  title: "Aspect Ratio",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "16:9", value: "16:9" },
+                      { title: "4:3", value: "4:3" },
+                      { title: "1:1", value: "1:1" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "16:9",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row26",
+      title: "Row 26",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "aspectRatio",
+                  title: "Aspect Ratio",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "16:9", value: "16:9" },
+                      { title: "4:3", value: "4:3" },
+                      { title: "1:1", value: "1:1" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "16:9",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row27",
+      title: "Row 27",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "aspectRatio",
+                  title: "Aspect Ratio",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "16:9", value: "16:9" },
+                      { title: "4:3", value: "4:3" },
+                      { title: "1:1", value: "1:1" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "16:9",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row28",
+      title: "Row 28",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "aspectRatio",
+                  title: "Aspect Ratio",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "16:9", value: "16:9" },
+                      { title: "4:3", value: "4:3" },
+                      { title: "1:1", value: "1:1" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "16:9",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row29",
+      title: "Row 29",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "aspectRatio",
+                  title: "Aspect Ratio",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "16:9", value: "16:9" },
+                      { title: "4:3", value: "4:3" },
+                      { title: "1:1", value: "1:1" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "16:9",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row30",
+      title: "Row 30",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "aspectRatio",
+                  title: "Aspect Ratio",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "16:9", value: "16:9" },
+                      { title: "4:3", value: "4:3" },
+                      { title: "1:1", value: "1:1" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "16:9",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row31",
+      title: "Row 31",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "aspectRatio",
+                  title: "Aspect Ratio",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "16:9", value: "16:9" },
+                      { title: "4:3", value: "4:3" },
+                      { title: "1:1", value: "1:1" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "16:9",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row32",
+      title: "Row 32",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "aspectRatio",
+                  title: "Aspect Ratio",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "16:9", value: "16:9" },
+                      { title: "4:3", value: "4:3" },
+                      { title: "1:1", value: "1:1" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "16:9",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row33",
+      title: "Row 33",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "aspectRatio",
+                  title: "Aspect Ratio",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "16:9", value: "16:9" },
+                      { title: "4:3", value: "4:3" },
+                      { title: "1:1", value: "1:1" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "16:9",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row34",
+      title: "Row 34",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "aspectRatio",
+                  title: "Aspect Ratio",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "16:9", value: "16:9" },
+                      { title: "4:3", value: "4:3" },
+                      { title: "1:1", value: "1:1" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "16:9",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "row35",
+      title: "Row 35",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+            {
+              name: "video",
+              title: "Video",
+              type: "object",
+              fields: [
+                {
+                  name: "file",
+                  title: "File",
+                  type: "file",
+                  options: {
+                    accept: ["video/*"],
+                  },
+                },
+                {
+                  name: "thumbnail",
+                  title: "Thumbnail",
+                  type: "image",
+                },
+                {
+                  name: "autoplay",
+                  title: "Autoplay",
+                  type: "boolean",
+                },
+                {
+                  name: "aspectRatio",
+                  title: "Aspect Ratio",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "16:9", value: "16:9" },
+                      { title: "4:3", value: "4:3" },
+                      { title: "1:1", value: "1:1" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "16:9",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
 

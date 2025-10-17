@@ -19,6 +19,19 @@ export const metadata = {
   title: "Function Lab",
   description:
     "Function Lab is a design practice that creates systems and experiences across brand, print and digital.",
+  openGraph: {
+    title: "Function Lab",
+    description:
+      "Function Lab is a design practice that creates systems and experiences across brand, print and digital.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1920,
+        height: 1080,
+        alt: "Function Lab",
+      },
+    ],
+  },
 };
 
 // revalidate every 4 hours
