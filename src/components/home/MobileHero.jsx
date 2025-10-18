@@ -1,4 +1,5 @@
 "use client";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -6,6 +7,65 @@ import { SplitText } from "gsap/SplitText";
 import { renderStarEmphasis } from "@/lib/utils";
 
 const MobileHero = ({ src, poster, info }) => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    let hasPlayed = false;
+
+    const attemptAutoPlay = () => {
+      if (hasPlayed) return;
+
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            hasPlayed = true;
+          })
+          .catch((error) => {
+            console.log(
+              "Autoplay blocked, waiting for user interaction:",
+              error
+            );
+          });
+      }
+    };
+
+    const playOnInteraction = () => {
+      if (hasPlayed || !video.paused) return;
+
+      video
+        .play()
+        .then(() => {
+          hasPlayed = true;
+        })
+        .catch((err) => console.log("Play failed:", err));
+    };
+
+    const events = ["click", "scroll", "touchstart", "mousemove", "keydown"];
+    events.forEach((event) => {
+      document.addEventListener(event, playOnInteraction, {
+        once: true,
+        passive: true,
+      });
+    });
+
+    if (video.readyState >= 3) {
+      attemptAutoPlay();
+    } else {
+      video.addEventListener("loadeddata", attemptAutoPlay, { once: true });
+    }
+
+    return () => {
+      events.forEach((event) => {
+        document.removeEventListener(event, playOnInteraction);
+      });
+    };
+  }, []);
+
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger, SplitText);
     // 刷新 ScrollTrigger 确保正确计算
@@ -61,14 +121,17 @@ const MobileHero = ({ src, poster, info }) => {
     <section className="mobile-hero relative flex min-h-[100dvh] items-center justify-center overflow-hidden pb-[env(safe-area-inset-bottom)]">
       <div className="mobile-hero-frame">
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
           poster={poster}
           className="mobile-hero-video w-full object-cover"
+          webkit-playsinline="true"
         >
-          <source src={src} />
+          <source src={src} type="video/mp4" />
         </video>
       </div>
 

@@ -1,4 +1,5 @@
 "use client";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -6,6 +7,69 @@ import { SplitText } from "gsap/SplitText";
 import { renderStarEmphasis } from "@/lib/utils";
 
 const Hero = ({ src, poster, info }) => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    let hasPlayed = false;
+
+    // 尝试自动播放
+    const attemptAutoPlay = () => {
+      if (hasPlayed) return;
+
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            hasPlayed = true;
+          })
+          .catch((error) => {
+            console.log(
+              "Autoplay blocked, waiting for user interaction:",
+              error
+            );
+          });
+      }
+    };
+
+    // 用户交互后立即播放（无感知）
+    const playOnInteraction = () => {
+      if (hasPlayed || !video.paused) return;
+
+      video
+        .play()
+        .then(() => {
+          hasPlayed = true;
+        })
+        .catch((err) => console.log("Play failed:", err));
+    };
+
+    // 监听多种用户交互事件
+    const events = ["click", "scroll", "touchstart", "mousemove", "keydown"];
+    events.forEach((event) => {
+      document.addEventListener(event, playOnInteraction, {
+        once: true,
+        passive: true,
+      });
+    });
+
+    // 立即尝试自动播放
+    if (video.readyState >= 3) {
+      attemptAutoPlay();
+    } else {
+      video.addEventListener("loadeddata", attemptAutoPlay, { once: true });
+    }
+
+    return () => {
+      events.forEach((event) => {
+        document.removeEventListener(event, playOnInteraction);
+      });
+    };
+  }, []);
+
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -51,14 +115,17 @@ const Hero = ({ src, poster, info }) => {
     <section className="hero relative">
       <figure className="flex h-screen w-full items-center justify-center">
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
           poster={poster}
           className="w-full h-full object-cover hero-video"
+          webkit-playsinline="true"
         >
-          <source src={src} />
+          <source src={src} type="video/mp4" />
         </video>
       </figure>
 
