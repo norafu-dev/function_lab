@@ -77,7 +77,7 @@ const Hero = ({ src, poster, info }) => {
       scrollTrigger: {
         trigger: ".hero",
         start: "top top",
-        end: "+=300%",
+        end: "+=400%",
         scrub: 1,
         pin: true,
         pinSpacing: "margin",
@@ -96,7 +96,7 @@ const Hero = ({ src, poster, info }) => {
       .fromTo(
         ".hero-info",
         { y: "107vh" },
-        { y: "80vh", ease: "power1.inOut", duration: 1 },
+        { y: "75vh", ease: "power1.inOut", duration: 1 },
         "<5%"
       )
       .to(
