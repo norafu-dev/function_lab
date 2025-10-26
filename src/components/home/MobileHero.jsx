@@ -102,8 +102,8 @@ const MobileHero = ({ src, poster, info }) => {
       .fromTo(
         ".mobile-hero-info",
         { y: "76vh" },
-        { y: "71vh", ease: "power1.inOut", duration: 1 },
-        "<0.3"
+        { y: "71vh", ease: "power1.inOut", duration: 0.9 },
+        "<0.2"
       )
       .to(
         split.words,
