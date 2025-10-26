@@ -96,7 +96,7 @@ const Hero = ({ src, poster, info }) => {
       .fromTo(
         ".hero-info",
         { y: "107vh" },
-        { y: "75vh", ease: "power1.inOut", duration: 1 },
+        { y: "73vh", ease: "power1.inOut", duration: 1 },
         "<5%"
       )
       .to(
