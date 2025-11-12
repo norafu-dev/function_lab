@@ -34,8 +34,8 @@ export const metadata = {
   },
 };
 
-// revalidate every 4 hours
-export const revalidate = 14400;
+// revalidate every 24 hours
+export const revalidate = 24 * 60 * 60;
 
 export default function RootLayout({ children }) {
   return (
